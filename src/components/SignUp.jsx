@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link } from "@reach/router";
 import { auth, signInWithGoogle, generateUserDocument } from "../firebase";
+import {Button} from "@material-ui/core";
+import {Typography} from '@material-ui/core/Typography'
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -89,7 +91,9 @@ const SignUp = () => {
           >
             Sign up
           </button>
+      
         </form>
+        
         <p className="text-center my-3">or</p>
         <button
           onClick={() => {
@@ -114,4 +118,11 @@ const SignUp = () => {
   );
 };
 
+const button=()=>{
+  return(
+    <div>
+      <Button variant="contained" color="primary">Sign Up</Button>
+    </div>
+  );
+}
 export default SignUp;
