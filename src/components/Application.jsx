@@ -1,5 +1,5 @@
 
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Router } from "@reach/router";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
@@ -8,6 +8,8 @@ import ProfilePage from "./ProfilePage";
 import { UserContext } from "../providers/UserProvider";
 import PasswordReset from "./PasswordReset";
 import { Grid } from '@material-ui/core';
+import EventForm from "./EventForm";
+import EventPage from "./EventPage";
 
 
 
@@ -15,9 +17,70 @@ import { Grid } from '@material-ui/core';
 
 function Application() {
   const user = useContext(UserContext);
+
+  const [events, setEvents] = useState([])
+
+
+  useEffect(() => {
+
+
+    fetch('https://sarao-18c59-default-rtdb.firebaseio.com/events.json')
+    .then(response => response.json())
+    .then(responseData => {
+        const loadedEvents = []
+        for (const key in responseData){
+            loadedEvents.push({
+            id: key,
+            title: responseData[key].title,
+            date: responseData[key].date,
+            location: responseData[key].location,
+            image: responseData[key].image
+
+        })
+        }
+
+        setEvents(loadedEvents)
+
+    })
+
+  }, [])
+
+  const addEventHandler = (eventInfo) => {
+
+    console.log(eventInfo)
+
+    fetch('https://sarao-18c59-default-rtdb.firebaseio.com/events.json', {
+      method: 'POST',
+      body: JSON.stringify(eventInfo),
+      headers: { 'Content-Type': 'application/json'}
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        setEvents((prevState) => [
+            ...prevState,
+            { id: responseData.id, ...eventInfo}
+          ])
+    })
+
+  }
+
+  const getEvents = () => {
+
+  }
+
+
+
   return (
         user ?
-        <ProfilePage />
+        <>
+          {/* <ProfilePage /> */}
+
+          <EventPage events={events} />
+
+
+          <EventForm path="createEvent" onAddEvent={addEventHandler} />
+          
+        </>
       :
 
         <Grid container style={{ minHeight: '100vh'}}>
