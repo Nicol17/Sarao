@@ -17,14 +17,14 @@ const SignUp = () => {
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState(null);
 
-    const theme = createMuiTheme({
+  const theme = createMuiTheme({
       palette:{
         primary:{
           main: '#2196f3'
         }
       
       }
-    })
+    });
 
   const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
     event.preventDefault();
@@ -153,7 +153,7 @@ const SignUp = () => {
               </div>
               <div style={{display:'inline'}}>
               <p className="text-center my-3" style={{display:'inline'}}>
-              <Link to="passwordReset" className="text-blue-500 hover:text-blue-600">
+              <Link to="/passwordReset" className="text-blue-500 hover:text-blue-600">
                 Forgot Password?
               </Link>
             </p>
