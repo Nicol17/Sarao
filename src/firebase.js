@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 // const APIKey = process.env.REACT_APP_API_KEY
 
@@ -62,3 +63,6 @@ const getUserDocument = async uid => {
     console.error("Error fetching user", error);
   }
 };
+
+export const storage = firebase.storage();
+

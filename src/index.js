@@ -4,11 +4,15 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import EventContextProvider from './providers/EventProvider'
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <EventContextProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </EventContextProvider>,
+
   document.getElementById('root')
 );
 
