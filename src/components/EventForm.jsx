@@ -9,9 +9,12 @@ import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import { storage } from "../firebase"
 
 
 const EventForm = (props) => {
+
+
     
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
@@ -20,9 +23,10 @@ const EventForm = (props) => {
     const [location, setLocation] = useState("")
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
-    const [image, setImage] = useState()
+    const [img, setImg] = useState(null);
+    const [url, setUrl] = useState("");
+    const [progress, setProgress] = useState(0);
 
-    
     const useStyles=makeStyles((theme) => ({
         image: {
             backgroundImage: 'url(https://source.unsplash.com/random)',
@@ -31,6 +35,7 @@ const EventForm = (props) => {
             backgroundPosition: 'center',
           },
         }));
+
     const classes = useStyles();
 
 
@@ -43,8 +48,64 @@ const EventForm = (props) => {
         },
       });
 
-    const submitHandler = (e) => {
+    const handleChange = e => {
+        setImg(e.target.files[0]);
+
+
+
+    };
+
+    const submitHandler = async (e) => {
         e.preventDefault()
+
+        const uploadTask = storage.ref(`images/${img.name}`).put(img);
+        await uploadTask.on(
+        "state_changed",
+        snapshot => {
+            const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            setProgress(progress);
+        },
+        error => {
+            console.log(error);
+        },
+        () => {
+            storage
+            .ref("images")
+            .child(img.name)
+            .getDownloadURL()
+            .then(url => {
+                if(url) {
+
+                    props.onAddEvent({
+                        title: title,
+                        description: description,
+                        date: date,
+                        time, time,
+                        location: location,
+                        address: address,
+                        city: city,
+                        img: url
+                    })
+        
+                }
+            });
+        }
+        );
+
+
+
+        console.log("url: ", url);
+
+
+
+
+
+    }
+
+    const sendingData = (e) => {
+
         props.onAddEvent({
             title: title,
             description: description,
@@ -53,12 +114,12 @@ const EventForm = (props) => {
             location: location,
             address: address,
             city: city,
-            image: image
+            img: url
         })
-
     }
 
-   
+    
+
 
     return(
        
@@ -202,7 +263,7 @@ const EventForm = (props) => {
                 <br />
                 <div>
                 <InputLabel style={{marginTop:'430px' }}>Image</InputLabel>
-                <TextField
+                <input
                     style={{marginTop:'40px', width:'100%' }}
                     type="file"
                     //variant="outlined"
@@ -212,7 +273,6 @@ const EventForm = (props) => {
                     id="image"
                     label="Image"
                     name="image"
-                    value = {image}
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="Image"
@@ -220,7 +280,7 @@ const EventForm = (props) => {
                     InputLabelProps={{
                         shrink: true,
                       }}
-                    onChange={(e) => {setImage(e.target.value)}}
+                    onChange={handleChange} 
                 /> 
                 </div>
                 <br />
