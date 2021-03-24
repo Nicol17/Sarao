@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import EventForm from '../EventForm'
+// import EventForm from '../EventForm'
 
 
 //STYLING
-import { Typography, AppBar, Button, CssBaseline, Grid, Toolbar, Container, } from '@material-ui/core'
+import {  AppBar, Button, CssBaseline, Grid, Toolbar, } from '@material-ui/core'
 import useStyles from '../../styles/styles'
 
 

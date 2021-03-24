@@ -2,12 +2,12 @@ import React, {useState} from "react";
 import { Link } from "@reach/router";
 import { signInWithGoogle } from "../firebase";
 import { auth } from "../firebase";
-import {Button, InputLabel} from "@material-ui/core";
+import {Button, } from "@material-ui/core";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
+// import Box from '@material-ui/core/Box';
+// import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
 
@@ -46,10 +46,7 @@ const SignIn = () => {
             setPassword(value);
           }
       };
-   
-      const APIKey = process.env.REACT_APP_API_KEY
-
-      console.log(APIKey)
+  
 
   return (
     <div style={{ width: '100%', marginTop:'40px' }}>

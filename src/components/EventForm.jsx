@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {Button, InputLabel} from "@material-ui/core";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
@@ -11,8 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import NavBar from './Nav-Footer/NavBar'
 import Bottom from './Nav-Footer/Bottom'
-import useStyles from '../styles/styles'
+// import useStyles from '../styles/styles'
 import { storage } from "../firebase"
+import { EventContext } from "../providers/EventProvider";
 
 
 
@@ -25,10 +26,10 @@ const EventForm = (props) => {
     const [location, setLocation] = useState("")
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
-
     const [img, setImg] = useState(null);
-    const [url, setUrl] = useState("");
     const [progress, setProgress] = useState(0);
+
+    const eventContext = useContext(EventContext)
 
     const useStyles=makeStyles((theme) => ({
         image: {
@@ -80,11 +81,11 @@ const EventForm = (props) => {
             .then(url => {
                 if(url) {
 
-                    props.onAddEvent({
+                    eventContext.addEventHandler({
                         title: title,
                         description: description,
                         date: date,
-                        time, time,
+                        time: time,
                         location: location,
                         address: address,
                         city: city,
