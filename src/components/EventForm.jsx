@@ -26,11 +26,6 @@ const EventForm = (props) => {
     const [image, setImage] = useState()
     const classes = useStyles();
 
-    
-    // const useStyles=makeStyles((theme) => ({
-        
-    //     }));
-
     const theme = createMuiTheme({
         palette:{
           primary:{
@@ -86,7 +81,7 @@ const EventForm = (props) => {
               
                 <br />
                 <br />
-              <InputLabel style={{marginTop:'80px' }}>Description</InputLabel>
+              <InputLabel style={{marginTop:'80px'}}>Description</InputLabel>
                 <br></br>
                 <TextareaAutosize
                 id="description" 

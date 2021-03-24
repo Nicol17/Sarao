@@ -19,7 +19,15 @@ const useStyles = makeStyles((theme) =>({
          marginRight: '20px',
     },
     buttons:{
-         marginTop: '30px'
+         marginTop: '30px',
+         width:'80%', display:"flex", 
+        justifyContent:'space-between',
+        margin:'auto'
+    },
+    cities:{
+     width:'60%', 
+     display:"flex", 
+     justifyContent:'flex-end'
     },
     cardGrid:{
          paddingTop: '20px 0px'

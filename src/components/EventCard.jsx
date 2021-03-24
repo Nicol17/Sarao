@@ -13,7 +13,7 @@ const EventCard = (props) => {
 
     return(
         <>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} md={4}>
              <Card className={classes.card}>
                <CardMedia className={classes.cardMedia} 
                image='https://source.unsplash.com/random'
