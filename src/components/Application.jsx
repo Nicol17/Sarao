@@ -28,13 +28,18 @@ function Application() {
     .then(response => response.json())
     .then(responseData => {
         const loadedEvents = []
+        
         for (const key in responseData){
             loadedEvents.push({
             id: key,
             title: responseData[key].title,
+            description: responseData[key].description,
             date: responseData[key].date,
+            time: responseData[key].time,
             location: responseData[key].location,
-            image: responseData[key].image
+            address: responseData[key].address,
+            city: responseData[key].city,
+            img: responseData[key].img
 
         })
         }

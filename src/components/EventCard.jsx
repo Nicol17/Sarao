@@ -27,7 +27,7 @@ const EventCard = (props) => {
             <Grid item xs={12} sm={6}>
              <Card className={classes.card}>
                <CardMedia className={classes.cardMedia} 
-               image='https://source.unsplash.com/random'
+               image={props.event.img}
                title='Image title'
                />
                <CardContent className={classes.cardContent}>
@@ -41,7 +41,8 @@ const EventCard = (props) => {
                  <PinDropIcon className={classes.icon}/>{props.event.location}
                  </Typography>
                  <Typography>
-                   Brief description Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate, reiciendis!
+                   {/* Brief description Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate, reiciendis! */}
+                   {props.event.description}
                  </Typography>
                </CardContent>
                  <CardActions>
