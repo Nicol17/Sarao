@@ -1,4 +1,15 @@
 import React, { useState } from 'react'
+import {Button, InputLabel} from "@material-ui/core";
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import { FormControl } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
 
 const EventForm = (props) => {
     
@@ -7,12 +18,30 @@ const EventForm = (props) => {
     const [date, setDate] = useState("")
     const [time, setTime] = useState("")
     const [location, setLocation] = useState("")
-    const [adress, setAdress] = useState("")
+    const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
     const [image, setImage] = useState()
 
+    
+    const useStyles=makeStyles((theme) => ({
+        image: {
+            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          },
+        }));
+    const classes = useStyles();
 
 
+    const theme = createMuiTheme({
+        palette:{
+          primary:{
+            main: '#2196f3'
+          }
+        
+        },
+      });
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -22,94 +51,191 @@ const EventForm = (props) => {
             date: date,
             time, time,
             location: location,
-            adress: adress,
+            address: address,
             city: city,
             image: image
         })
 
     }
 
-
+   
 
     return(
-
+       
         <>
-            <h1>Create an Event</h1>
-            <form onSubmit={submitHandler}>
-                <label>Title:</label>
-                <input
+        <Grid container style={{ minHeight: '100vh'}}>
+        <Grid item xs={false} sm={8} md={12} className={classes.image} style={{height:'300px'}}/>
+        <div style={{ display:'flex', flexDirection:'column',width: '100%', marginTop:'40px', marginBottom:'50px' }}>
+            <h1 style={{textAlign:'center'}}>Create an Event</h1>
+            
+            <FormControl style={{ margin:'auto', width: '35%' }}>
+           
+             <TextField
                     type="text"
+                    //variant="outlined"
+                    margin="normal"
+                    //required
+                    fullwidth
                     id="title"
-                    value={title}
+                    label="Title"
+                    name="title"
+                    value = {title}
+                    //autoComplete="email"
+                    className="my-1 p-1 w-full"
+                    placeholder="Name your event"
+                    autoFocus
                     onChange={(e) => {setTitle(e.target.value)}}
-                />
+            />
+              
                 <br />
-
-                <label>Description:</label>
-                <input
-                    type="text"
-                    id="description"
-                    value={description}
-                    onChange={(e) => {setDescription(e.target.value)}}
-                />
                 <br />
-
-                <label>Date:</label>
-                <input
+              <InputLabel style={{marginTop:'80px' }}>Description</InputLabel>
+                <br></br>
+                <TextareaAutosize
+                id="description" 
+                autoFocus
+                rowsMin={3}
+                label="Description"
+                value={description}
+                aria-label="empty textarea" 
+                placeholder="Describe your event"
+                onChange={(e) => {setDescription(e.target.value)}}
+                >
+                </TextareaAutosize>
+                <br/>
+                <div style={{display: 'flex', flexDirection:'row', justifyContent:'space-between'}}>
+                <TextField
+                    style={{width:'45%'}}
                     type="date"
+                    //variant="outlined"
+                    margin="normal"
+                    //required
+                    fullwidth
                     id="date"
-                    value={date}
+                    label="Date"
+                    name="date"
+                    value = {date}
+                    //autoComplete="email"
+                    className="my-1 p-1 w-full"
+                    //autoFocus
                     onChange={(e) => {setDate(e.target.value)}}
-                />
-                <br />
-
-                <label>Time:</label>
-                <input
+                    InputLabelProps={{
+                        shrink: true,
+                      }}
+                 />
+               
+                <TextField
+                    style={{width:'45%'}}
                     type="time"
+                    //variant="outlined"
+                    margin="normal"
+                    //required
+                    fullwidth
                     id="time"
-                    value={time}
+                    label="Time"
+                    name="time"
+                    value = {time}
+                    //autoComplete="email"
+                    className="my-1 p-1 w-full"
+                    //autoFocus
                     onChange={(e) => {setTime(e.target.value)}}
-                />
-                <br />
-
-                <label>Location:</label>
-                <input
+                    InputLabelProps={{
+                        shrink: true,
+                      }}
+                 />
+               </div>
+               
+                <TextField
                     type="text"
+                    //variant="outlined"
+                    margin="normal"
+                    //required
+                    fullwidth
                     id="location"
-                    value={location}
+                    label="Location 📍"
+                    name="location"
+                    value = {location}
+                    //autoComplete="email"
+                    className="my-1 p-1 w-full"
+                    placeholder="City"
+                    autoFocus
                     onChange={(e) => {setLocation(e.target.value)}}
-                />
+            />
+             
                 <br />
-
-                <label>Adress:</label>
-                <input
+                <div style={{display: 'flex', flexDirection:'row', justifyContent:'space-between'}}>
+                <TextField
+                    style={{width:'45%'}}
                     type="text"
-                    id="adress"
-                    value={adress}
-                    onChange={(e) => {setAdress(e.target.value)}}
+                    //variant="outlined"
+                    margin="normal"
+                    //required
+                    fullwidth
+                    id="address"
+                    label="Address"
+                    name="address"
+                    value = {address}
+                    //autoComplete="email"
+                    className="my-1 p-1 w-full"
+                    placeholder="Address"
+                    autoFocus
+                    onChange={(e) => {setAddress(e.target.value)}}
                 />
-
-                <label>City:</label>
-                <input
+                <TextField
+                    style={{width:'45%'}}
                     type="text"
+                    //variant="outlined"
+                    margin="normal"
+                    //required
+                    fullwidth
                     id="city"
-                    value={city}
+                    label="City"
+                    name="city"
+                    value = {city}
+                    //autoComplete="email"
+                    className="my-1 p-1 w-full"
+                    placeholder="City"
+                    autoFocus
                     onChange={(e) => {setCity(e.target.value)}}
-                />
+                />    
+                </div> 
                 <br />
-
-                <label>Image:</label>
-                <input
+                <div>
+                <InputLabel style={{marginTop:'430px' }}>Image</InputLabel>
+                <TextField
+                    style={{marginTop:'40px', width:'100%' }}
                     type="file"
+                    //variant="outlined"
+                    margin="normal"
+                    //required
+                    fullwidth
                     id="image"
-                    value={image}
+                    label="Image"
+                    name="image"
+                    value = {image}
+                    //autoComplete="email"
+                    className="my-1 p-1 w-full"
+                    placeholder="Image"
+                    autoFocus
+                    InputLabelProps={{
+                        shrink: true,
+                      }}
                     onChange={(e) => {setImage(e.target.value)}}
-                />
+                /> 
+                </div>
                 <br />
-
-                <button type='submit'>Add Event</button>
-            </form>
-
+                <br />
+            <ThemeProvider theme={theme}>
+                <Button className="w-full bg-blue-400 text-white py-3" variant="contained" size="medium" color="primary">
+                    <Typography component="h1" variant="h5">
+                    Create Event
+                    </Typography>
+                </Button>
+            </ThemeProvider>
+             
+            </FormControl>
+            </div>
+            </Grid>
         </>
     )
 }
