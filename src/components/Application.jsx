@@ -23,7 +23,7 @@ function Application() {
         <Grid container style={{ minHeight: '100vh'}}>
           <Grid item xs={12} sm={6}>
             <img 
-            src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+            src="gs://sarao-18c59.appspot.com/drew-dau-SVysFMKQCgk-unsplash.jpg" 
             style={{width: '100%', height: '100%', objectFit: 'cover'}} 
             alt="SaraoEvents"/>
             </Grid>
