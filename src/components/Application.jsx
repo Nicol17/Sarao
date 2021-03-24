@@ -10,7 +10,7 @@ import PasswordReset from "./PasswordReset";
 import { Grid } from '@material-ui/core';
 import EventForm from "./EventForm";
 import EventPage from "./EventPage";
-
+import EventDetail from "./EventDetail";
 
 
 
@@ -76,10 +76,10 @@ function Application() {
           {/* <ProfilePage /> */}
 
           <EventPage events={events} />
-
+          <EventDetail />
 
           <EventForm path="createEvent" onAddEvent={addEventHandler} />
-          
+         
         </>
       :
 
