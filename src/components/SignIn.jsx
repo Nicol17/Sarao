@@ -102,7 +102,13 @@ const SignIn = () => {
           <p className="text-center my-3" style={{textAlign:'center'}}>or</p>
           <ThemeProvider theme={theme} >
              <Button variant="contained" size="medium"  style={{width:'100%'}} color="secondary" className="bg-red-500 hover:bg-red-600 w-full py-2 text-white"
-            onClick={() => {signInWithGoogle();}}
+            onClick={() => {
+              try {
+                signInWithGoogle();
+              } catch (error) {
+                console.error("Error signing in with Google", error);
+              }
+            }}
             >
               <Typography component="h1" variant="h5">
               Sign in with Google
