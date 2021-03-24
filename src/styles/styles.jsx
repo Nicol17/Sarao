@@ -2,6 +2,12 @@ import { makeStyles } from '@material-ui/core/styles'
 
 // Hook for styles
 const useStyles = makeStyles((theme) =>({
+     toolbar: {
+          flexWrap: 'wrap',
+        },
+     logoNavBar:{
+          width: '90px'
+     },
     container: {
          backgroundColor: theme.palette.background.paper,
          padding: theme.spacing(8, 0, 6)
@@ -18,7 +24,8 @@ const useStyles = makeStyles((theme) =>({
     card:{
          height: '100%',
          display: 'flex',
-         flexDirection: 'column'
+         flexDirection: 'column',
+         paddingTop: '30px'
     },
     cardMedia:{
          paddingTop:'56.25%'
