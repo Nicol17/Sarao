@@ -9,19 +9,15 @@ import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-<<<<<<< HEAD
 import NavBar from './Nav-Footer/NavBar'
 import Bottom from './Nav-Footer/Bottom'
 import useStyles from '../styles/styles'
-=======
 import { storage } from "../firebase"
->>>>>>> main
+
 
 
 const EventForm = (props) => {
 
-
-    
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [date, setDate] = useState("")
@@ -99,37 +95,8 @@ const EventForm = (props) => {
             });
         }
         );
-
-
-
-        console.log("url: ", url);
-
-
-
-
-
     }
 
-    const sendingData = (e) => {
-
-        props.onAddEvent({
-            title: title,
-            description: description,
-            date: date,
-            time, time,
-            location: location,
-            address: address,
-            city: city,
-            img: url
-        })
-    }
-
-<<<<<<< HEAD
-=======
-    
-
-
->>>>>>> main
     return(
        
         <>
