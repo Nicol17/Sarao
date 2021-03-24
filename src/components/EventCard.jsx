@@ -1,4 +1,6 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useContext } from 'react'
+import { EventContext } from '../providers/EventProvider'
+import { UserContext } from '../providers/UserProvider'
 
 // Stilyng
 import { Typography, AppBar, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@material-ui/core'
@@ -10,6 +12,15 @@ import useStyles from '../styles/styles'
 
 const EventCard = (props) => {
     const classes = useStyles();
+
+    const eventContext = useContext(EventContext)
+    const user = useContext(UserContext)
+  
+    const onGoingHandler = () => {
+
+        eventContext.subscribeToEvent(props.event, user.displayName)
+        
+    }
 
     return(
         <>
@@ -35,7 +46,7 @@ const EventCard = (props) => {
                </CardContent>
                  <CardActions>
 
-                   <Button size='small' color='primary'>I'm Going</Button>
+                   <Button size='small' color='primary' onClick={onGoingHandler} >I'm Going</Button>
                    <Button size='small' color='default'>See Event details</Button>
                    <StarIcon className={classes.icon}/>
                    <ShareIcon className={classes.icon}/>
