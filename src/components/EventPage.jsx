@@ -1,14 +1,20 @@
 import React from 'react'
 import EventCard from "./EventCard";
 //STYLING
-import { Typography, AppBar, Button, CssBaseline, Grid, Toolbar, Container } from '@material-ui/core'
+import { Typography, Button, Grid, Container } from '@material-ui/core'
 import useStyles from '../styles/styles'
 import NavBar from './Nav-Footer/NavBar'
 import Bottom from './Nav-Footer/Bottom'
+import { Link } from 'react-router-dom'
+
 
 const EventPage = props => {
 
     const classes = useStyles();
+
+    const goToEventHandler = (event) => {
+      console.log('here i am: ', event)
+    }
 
     return (
       // NAVABAR
@@ -59,7 +65,7 @@ const EventPage = props => {
                       props.events.map(
                           event => (
 
-                                  <EventCard key={event.id} event={event} />
+                                    <EventCard  key={event.id} event={event} goToEvent={goToEventHandler}  />
 
                           )
                       )

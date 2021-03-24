@@ -1,14 +1,14 @@
 
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Router } from "@reach/router";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import UserProvider from "../providers/UserProvider";
-import ProfilePage from "./ProfilePage";
+import { EventContext } from "../providers/EventProvider";
+// import ProfilePage from "./ProfilePage";
 import { UserContext } from "../providers/UserProvider";
 import PasswordReset from "./PasswordReset";
 import { Grid } from '@material-ui/core';
-import EventForm from "./EventForm";
+// import EventForm from "./EventForm";
 import EventPage from "./EventPage";
 import EventDetail from "./EventDetail";
 
@@ -17,12 +17,12 @@ import EventDetail from "./EventDetail";
 
 function Application() {
   const user = useContext(UserContext);
-
+  const eventContext = useContext(EventContext)
   const [events, setEvents] = useState([])
 
 
-  useEffect(() => {
 
+  useEffect(() => {
 
     fetch('https://sarao-18c59-default-rtdb.firebaseio.com/events.json')
     .then(response => response.json())
@@ -48,32 +48,7 @@ function Application() {
 
     })
 
-  }, [])
-
-  const addEventHandler = (eventInfo) => {
-
-    console.log(eventInfo)
-
-    fetch('https://sarao-18c59-default-rtdb.firebaseio.com/events.json', {
-      method: 'POST',
-      body: JSON.stringify(eventInfo),
-      headers: { 'Content-Type': 'application/json'}
-    })
-      .then(response => response.json())
-      .then(responseData => {
-        setEvents((prevState) => [
-            ...prevState,
-            { id: responseData.id, ...eventInfo}
-          ])
-    })
-
-  }
-
-  const getEvents = () => {
-
-  }
-
-
+  }, [events])
 
   return (
         user ?
@@ -83,8 +58,6 @@ function Application() {
           <EventPage events={events} />
           <EventDetail />
 
-          <EventForm path="createEvent" onAddEvent={addEventHandler} />
-         
         </>
       :
 
