@@ -226,7 +226,7 @@ const EventForm = (props) => {
                 <br />
                 <br />
             <ThemeProvider theme={theme}>
-                <Button className="w-full bg-blue-400 text-white py-3" variant="contained" size="medium" color="primary">
+                <Button onClick={submitHandler} className="w-full bg-blue-400 text-white py-3" variant="contained" size="medium" color="primary">
                     <Typography component="h1" variant="h5">
                     Create Event
                     </Typography>
