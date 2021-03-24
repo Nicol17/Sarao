@@ -56,7 +56,7 @@ const PasswordReset = () => {
         <FormControl style={{ width: '100%', marginBottom:'15px' }}>
           {emailHasBeenSent && (
             <div className="py-3 bg-green-400 w-full text-white text-center mb-3">
-              <h3 style={{textAlign:'center', color:"#a82403"}}>
+              <h3 style={{textAlign:'center'}}>
                 An email has been sent to you!
               </h3>
               
