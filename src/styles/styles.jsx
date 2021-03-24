@@ -2,8 +2,11 @@ import { makeStyles } from '@material-ui/core/styles'
 
 // Hook for styles
 const useStyles = makeStyles((theme) =>({
-     toolbar: {
-          flexWrap: 'wrap',
+     navBarStyle: {
+        display:"flex", 
+        justifyContent:'space-between', 
+        flexDirection:'colunm', 
+        alignItems:"center", width:'100%'
         },
      logoNavBar:{
           width: '90px'
@@ -36,7 +39,20 @@ const useStyles = makeStyles((theme) =>({
     footer:{
         backgroundColor: theme.palette.background.paper,
         padding: '50px 0'
-    }
+    },
+    hero: {
+     display:'flex',
+     flexDirection:'column',
+     width: '100%',
+     marginTop:'40px',
+     marginBottom:'50px'
+    },
+    image: {
+     backgroundImage: 'url(https://source.unsplash.com/random)',
+     backgroundRepeat: 'no-repeat',
+     backgroundSize: 'cover',
+     backgroundPosition: 'center',
+   },
 
 }))
 

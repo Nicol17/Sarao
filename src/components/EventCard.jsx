@@ -20,11 +20,11 @@ const EventCard = (props) => {
                title='Image title'
                />
                <CardContent className={classes.cardContent}>
-                 <Typography gutterBottom variant='p'>
-                    {props.event.date}
-                 </Typography>
                  <Typography gutterBottom variant='h4'>
                      {props.event.title}
+                 </Typography>
+                 <Typography gutterBottom variant='p'>
+                    {props.event.date}
                  </Typography>
                  <Typography gutterBottom variant='h6'color='primary'>
                  <PinDropIcon className={classes.icon}/>{props.event.location}

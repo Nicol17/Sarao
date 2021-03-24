@@ -9,6 +9,9 @@ import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import NavBar from './Nav-Footer/NavBar'
+import Bottom from './Nav-Footer/Bottom'
+import useStyles from '../styles/styles'
 
 
 const EventForm = (props) => {
@@ -21,18 +24,12 @@ const EventForm = (props) => {
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
     const [image, setImage] = useState()
-
-    
-    const useStyles=makeStyles((theme) => ({
-        image: {
-            backgroundImage: 'url(https://source.unsplash.com/random)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          },
-        }));
     const classes = useStyles();
 
+    
+    // const useStyles=makeStyles((theme) => ({
+        
+    //     }));
 
     const theme = createMuiTheme({
         palette:{
@@ -58,14 +55,14 @@ const EventForm = (props) => {
 
     }
 
-   
-
     return(
        
         <>
+        <NavBar/>
         <Grid container style={{ minHeight: '100vh'}}>
         <Grid item xs={false} sm={8} md={12} className={classes.image} style={{height:'300px'}}/>
-        <div style={{ display:'flex', flexDirection:'column',width: '100%', marginTop:'40px', marginBottom:'50px' }}>
+        <div className={classes.hero}>  
+
             <h1 style={{textAlign:'center'}}>Create an Event</h1>
             
             <FormControl style={{ margin:'auto', width: '35%' }}>
@@ -236,6 +233,7 @@ const EventForm = (props) => {
             </FormControl>
             </div>
             </Grid>
+            <Bottom/>
         </>
     )
 }
