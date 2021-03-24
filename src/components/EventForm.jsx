@@ -9,7 +9,13 @@ import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+<<<<<<< HEAD
+import NavBar from './Nav-Footer/NavBar'
+import Bottom from './Nav-Footer/Bottom'
+import useStyles from '../styles/styles'
+=======
 import { storage } from "../firebase"
+>>>>>>> main
 
 
 const EventForm = (props) => {
@@ -23,6 +29,7 @@ const EventForm = (props) => {
     const [location, setLocation] = useState("")
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
+
     const [img, setImg] = useState(null);
     const [url, setUrl] = useState("");
     const [progress, setProgress] = useState(0);
@@ -37,7 +44,6 @@ const EventForm = (props) => {
         }));
 
     const classes = useStyles();
-
 
     const theme = createMuiTheme({
         palette:{
@@ -118,15 +124,20 @@ const EventForm = (props) => {
         })
     }
 
+<<<<<<< HEAD
+=======
     
 
 
+>>>>>>> main
     return(
        
         <>
+        <NavBar/>
         <Grid container style={{ minHeight: '100vh'}}>
         <Grid item xs={false} sm={8} md={12} className={classes.image} style={{height:'300px'}}/>
-        <div style={{ display:'flex', flexDirection:'column',width: '100%', marginTop:'40px', marginBottom:'50px' }}>
+        <div className={classes.hero}>  
+
             <h1 style={{textAlign:'center'}}>Create an Event</h1>
             
             <FormControl style={{ margin:'auto', width: '35%' }}>
@@ -150,7 +161,7 @@ const EventForm = (props) => {
               
                 <br />
                 <br />
-              <InputLabel style={{marginTop:'80px' }}>Description</InputLabel>
+              <InputLabel style={{marginTop:'80px'}}>Description</InputLabel>
                 <br></br>
                 <TextareaAutosize
                 id="description" 
@@ -296,6 +307,7 @@ const EventForm = (props) => {
             </FormControl>
             </div>
             </Grid>
+            <Bottom/>
         </>
     )
 }

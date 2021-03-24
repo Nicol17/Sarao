@@ -24,18 +24,18 @@ const EventCard = (props) => {
 
     return(
         <>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} md={4}>
              <Card className={classes.card}>
                <CardMedia className={classes.cardMedia} 
                image={props.event.img}
                title='Image title'
                />
                <CardContent className={classes.cardContent}>
-                 <Typography gutterBottom variant='p'>
-                    {props.event.date}
-                 </Typography>
                  <Typography gutterBottom variant='h4'>
                      {props.event.title}
+                 </Typography>
+                 <Typography gutterBottom variant='p'>
+                    {props.event.date}
                  </Typography>
                  <Typography gutterBottom variant='h6'color='primary'>
                  <PinDropIcon className={classes.icon}/>{props.event.location}

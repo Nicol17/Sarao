@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -7,8 +8,11 @@ import EventContextProvider from './providers/EventProvider'
 
 ReactDOM.render(
   <EventContextProvider>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </EventContextProvider>,
+
   document.getElementById('root')
 );
 
