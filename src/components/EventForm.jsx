@@ -52,11 +52,11 @@ const EventForm = (props) => {
 
     const handleChange = (e) => {
         if (e.target.files[0]) {
-            setImage(e.target.files[0])
+            setImg(e.target.files[0])
         }
     };
 
-    console.log("image: ", image)
+    console.log("image: ", img)
 
     const submitHandler = async (e) => {
         e.preventDefault()

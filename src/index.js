@@ -7,17 +7,12 @@ import reportWebVitals from './reportWebVitals';
 import EventContextProvider from './providers/EventProvider'
 
 ReactDOM.render(
-<<<<<<< HEAD
-  
-    <App />,
-=======
   <EventContextProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </EventContextProvider>,
 
->>>>>>> dbc51cf56ae26894b1fff9c693888f0a3f8b2e98
   document.getElementById('root')
 );
 

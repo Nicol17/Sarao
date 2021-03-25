@@ -2,12 +2,7 @@ import React, {useState} from "react";
 import { Link } from "@reach/router";
 import { signInWithGoogle } from "../firebase";
 import { auth } from "../firebase";
-<<<<<<< HEAD
-import '../index'
-import {Button, InputLabel} from "@material-ui/core";
-=======
 import {Button, } from "@material-ui/core";
->>>>>>> dbc51cf56ae26894b1fff9c693888f0a3f8b2e98
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
