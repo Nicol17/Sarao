@@ -6,15 +6,12 @@ import useStyles from '../styles/styles'
 import NavBar from './Nav-Footer/NavBar'
 import Bottom from './Nav-Footer/Bottom'
 import { Link } from 'react-router-dom'
+import  '../styles/onlyCss.css'
 
 
 const EventPage = props => {
 
     const classes = useStyles();
-
-    const goToEventHandler = (event) => {
-      console.log('here i am: ', event)
-    }
 
     return (
       // NAVABAR
@@ -34,24 +31,27 @@ const EventPage = props => {
       </div>
       <br/>
 
-      <div className={classes.buttons} >
-              <Grid item style={{width:'40%', alignItems:"center"}}>
-                <Typography variant='h4' align='left' style={{}}>
+          <Grid spacing={1} className='buttonEventPage' >
+              {/* <Grid item style={{width:'100%', alignItems:"center", justifyItems:'center'}} xs={12} sm={6} md={4} > */}
+              <Grid className='upcoming'>
+                {/* <Typography variant='h4' align='left' style={{}}> */}
+                <Typography variant='h4'>
                   Upcoming events
                 </Typography>
               </Grid>
-            <Grid container spacing={3} Grid item className={classes.cities}>
-              <Grid item>
+            {/* <Grid container spacing={3} Grid className={classes.cities}> */}
+            <Grid className='buttonCities' spacing={4}>
+              <Grid>
                 <Button variant='contained' color='secondary'> All </Button>
               </Grid>
-              <Grid item>
+              <Grid>
                 <Button variant='contained' color='secondary'> Vancouver </Button>
               </Grid>
-              <Grid item>
+              <Grid>
                 <Button variant='contained' color='secondary'> Toronto </Button>
               </Grid>
             </Grid>
-          </div>
+          </Grid>
           <br/>
 
 
@@ -65,7 +65,7 @@ const EventPage = props => {
                       props.events.map(
                           event => (
 
-                                    <EventCard  key={event.id} event={event} goToEvent={goToEventHandler}  />
+                                    <EventCard  key={event.id} event={event} />
 
                           )
                       )

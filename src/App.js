@@ -12,7 +12,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Application} />
         <Route exact path="/create-event" component={EventForm} />
-        <Route exact path="/event" component={EventDetail} />
+        <Route path="/event/:id" component={EventDetail} />
       </Switch>
     </UserProvider>
     </div>
