@@ -16,7 +16,9 @@ const useStyles = makeStyles((theme) =>({
          padding: theme.spacing(8, 0, 6)
     },
     icon: {
-         marginRight: '20px',
+         marginRight: '10px',
+         marginLeft: '20px',
+         color:'secondary',
     },
     icondateTime:{
 
@@ -45,7 +47,7 @@ const useStyles = makeStyles((theme) =>({
          paddingTop:'56.25%'
     },
     cardContent:{
-         flexGrow: 1
+     //     flexGrow: 1
     },
     footer:{
         backgroundColor: theme.palette.background.paper,

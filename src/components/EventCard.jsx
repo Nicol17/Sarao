@@ -39,11 +39,11 @@ const EventCard = (props) => {
                      {props.event.title}
                  </Typography>
                  <Typography gutterBottom variant='h6'>
-                 <DateRangeIcon className={classes.icon}/>{props.event.date} <TimerIcon className={classes.icon}/>{props.event.time} 
+                 <DateRangeIcon className={classes.icon} color="action"/>{props.event.date} <TimerIcon className={classes.icon} color="action"/>{props.event.time} 
                  </Typography>
                  
-                 <Typography gutterBottom variant='h6'color='primary'>
-                 <PinDropIcon className={classes.icon}/>{props.event.location}
+                 <Typography gutterBottom variant='h6'>
+                 <PinDropIcon className={classes.icon} color="secondary"/> <span className='textIcon' >{props.event.location}</span>
                  </Typography>
                  <Typography>
 
@@ -53,12 +53,10 @@ const EventCard = (props) => {
                     {props.event.description}
                    </Link>
                  </Typography>
-               </CardContent>
-                 <CardActions>
-
-                   <Button size='small' color='primary' onClick={onGoingHandler} >I'm Going</Button>
-
+                 <CardActions align='right'>
+                 <Button size='medium' color='primary' variant="contained" onClick={onGoingHandler} >I'm Going</Button>
                  </CardActions>
+               </CardContent>
              </Card>
            </Grid>
         </>

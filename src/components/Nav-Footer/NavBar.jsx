@@ -18,12 +18,12 @@ const NavBar = (props) => {
         <Toolbar className={classes.toolbar}>
 
           <Grid className={classes.navBarStyle} >
-          <Link to="/">
+          <Link to="/" style={{textDecoration: 'none'}}>
             <img className={classes.logoNavBar} src="https://firebasestorage.googleapis.com/v0/b/sarao-18c59.appspot.com/o/images%2Findex.png?alt=media&token=630a5ea1-0861-4038-8058-67455da65c8d" alt="Sarao Logo" />
           </Link>
             <Grid item>
-              <Link to="/create-event">
-                <Button variant='outlined' variant="outlined" color="secondary" > Create an event </Button>
+              <Link to="/create-event" style={{textDecoration: 'none'}}>
+                <Button variant='outlined' color="secondary" > Create an event </Button>
               </Link>
             </Grid>
           </Grid>
