@@ -1,40 +1,32 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import { Router } from "@reach/router";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import { EventContext } from "../providers/EventProvider";
-// import ProfilePage from "./ProfilePage";
+// import { EventContext } from "../providers/EventProvider";
 import { UserContext } from "../providers/UserProvider";
 import PasswordReset from "./PasswordReset";
 import { Grid } from '@material-ui/core';
-// import EventForm from "./EventForm";
 import EventPage from "./EventPage";
-import EventDetail from "./EventDetail";
-
-
-
 
 function Application() {
   const user = useContext(UserContext);
-  const eventContext = useContext(EventContext)
+  // const eventContext = useContext(EventContext)
   const [events, setEvents] = useState([])
   const [filter, setFilter] = useState("all")
 
   useEffect(() => {
-
-    
 
     fetch('https://sarao-18c59-default-rtdb.firebaseio.com/events.json')
     .then(response => response.json())
     .then(responseData => {
 
         if (filter === "toronto") {
+
+            const loadedEvents = []
         
-            for (const key in responseData){
+            for (const key in responseData){    
 
               if (responseData[key].city === 'Toronto') {
-                const loadedEvents = []
 
                 loadedEvents.push({
                 id: key,
@@ -48,18 +40,19 @@ function Application() {
                 img: responseData[key].img,
                 peopleGoing: responseData[key].peopleGoing
                 })
-
-                setEvents(loadedEvents)
             }
           }
 
+          setEvents(loadedEvents)
+
         } else if (filter === "vancouver") {
+
+            const loadedEvents = []
 
             for (const key in responseData){
 
               if (responseData[key].city === 'Vancouver') {
-                const loadedEvents = []
-
+                
                 loadedEvents.push({
                 id: key,
                 title: responseData[key].title,
@@ -72,10 +65,10 @@ function Application() {
                 img: responseData[key].img,
                 peopleGoing: responseData[key].peopleGoing
                 })
-
-                setEvents(loadedEvents)
             }
           }
+
+          setEvents(loadedEvents)
 
         } else {
 
@@ -105,35 +98,23 @@ function Application() {
 
     })
 
-  }, [events])
+  }, [filter])
 
   const filterHandlerAll = () => {
 
     setFilter('all')
-    console.log(filter)
-
 
   }
 
   const filterHandlerVan = () => {
 
     setFilter('vancouver')
-    console.log(filter)
-
 
   }
 
   const filterHandlerTor = () => {
 
     setFilter('toronto')
-    console.log(filter)
-
-  }
-
-  const filterHandler = (filterReceived) => {
-
-    setFilter(filterReceived)
-    console.log(filter)
 
   }
 

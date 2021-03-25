@@ -35,7 +35,7 @@ const EventContextProvider = (props) => {
 
         // redirect to home
         // window.location.href = "/"
-    
+        console.log(events)
     }
     
 

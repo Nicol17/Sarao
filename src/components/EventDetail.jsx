@@ -158,7 +158,11 @@ const EventDetail=(props) =>{
       <Grid item xs={12} sm={12} md={12} className={classes.image} style={{height:'500px', display:'flex', flexDirection:'row', alignItems:'flex-end'}}>
         <Grid item xs={12} sm={12} md={12}>
           <h1 style={{marginLeft:'60px', fontSize:'40px'}}>{title}</h1>
-          <h2 style={{marginLeft:'60px', fontSize:'25px'}}>{peopleGoing} People is comming</h2>
+          {
+            peopleGoing ? <h2 style={{marginLeft:'60px', fontSize:'25px'}}>{peopleGoing} People are comming</h2> : 
+            <h2 style={{marginLeft:'60px', fontSize:'25px'}}>No one is comming yet</h2>
+            
+          }
         </Grid>
       </Grid>
       <Grid container xs={false} sm={12} md={11}  style={{margin:'10px auto'}}>
