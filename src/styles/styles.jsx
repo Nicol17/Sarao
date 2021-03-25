@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) =>({
     icon: {
          marginRight: '20px',
     },
+    icondateTime:{
+
+    },
     buttons:{
          marginTop: '30px',
          width:'80%', display:"flex", 
@@ -25,9 +28,9 @@ const useStyles = makeStyles((theme) =>({
         margin:'auto'
     },
     cities:{
-     width:'60%', 
-     display:"flex", 
-     justifyContent:'flex-end'
+     width:'100%', 
+     // display:"flex", 
+     // justifyContent:'flex-end'
     },
     cardGrid:{
          paddingTop: '20px 0px'
@@ -53,13 +56,17 @@ const useStyles = makeStyles((theme) =>({
      flexDirection:'column',
      width: '100%',
      marginTop:'40px',
-     marginBottom:'50px'
+     marginBottom:'50px',
+     justifyContent:'center',
+     alignItems:'center',
+
     },
     image: {
      backgroundImage: 'url(https://source.unsplash.com/random)',
      backgroundRepeat: 'no-repeat',
      backgroundSize: 'cover',
      backgroundPosition: 'center',
+     height:'350px',
    },
 
 }))

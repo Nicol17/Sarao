@@ -3,7 +3,7 @@ import {Button, InputLabel} from "@material-ui/core";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
-// import Box from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
@@ -11,9 +11,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import NavBar from './Nav-Footer/NavBar'
 import Bottom from './Nav-Footer/Bottom'
-// import useStyles from '../styles/styles'
+import useStyles from '../styles/styles'
 import { storage } from "../firebase"
 import { EventContext } from "../providers/EventProvider";
+import  '../styles/onlyCss.css';
 
 
 
@@ -30,14 +31,14 @@ const EventForm = (props) => {
 
     const eventContext = useContext(EventContext)
 
-    const useStyles=makeStyles((theme) => ({
-        image: {
-            backgroundImage: 'url(https://source.unsplash.com/random)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-        },
-        }));
+    // const useStyles=makeStyles((theme) => ({
+    //     image: {
+    //         backgroundImage: 'url(https://source.unsplash.com/random)',
+    //         backgroundRepeat: 'no-repeat',
+    //         backgroundSize: 'cover',
+    //         backgroundPosition: 'center',
+    //     },
+    //     }));
 
     const classes = useStyles();
 
@@ -96,12 +97,12 @@ const EventForm = (props) => {
         <>
         <NavBar/>
         <Grid container style={{ minHeight: '100vh'}}>
-        <Grid item xs={false} sm={8} md={12} className={classes.image} style={{height:'300px'}}/>
+        <Grid item xs={12} sm={12} md={12} className={classes.image} />
         <div className={classes.hero}>  
 
             <h1 style={{textAlign:'center'}}>Create an Event</h1>
             
-            <FormControl style={{ margin:'auto', width: '35%' }}>
+            <FormControl className='formWidth'>
             <TextField
                     type="text"
                     //variant="outlined"
