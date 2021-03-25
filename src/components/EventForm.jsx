@@ -72,6 +72,11 @@ const EventForm = (props) => {
         const uploadTask = storage.ref(`images/${img.name}`).put(img);
         await uploadTask.on(
         "state_changed",
+        snapshot => {
+            const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+        },
         error => {
             console.log(error);
         },
@@ -82,17 +87,18 @@ const EventForm = (props) => {
             .getDownloadURL()
             .then(url => {
                 if(url) {
+
                     eventContext.addEventHandler({
                         title: title,
                         description: description,
                         date: date,
-                        time: time,
+                        time, time,
                         location: location,
                         address: address,
                         city: city,
                         img: url
                     })
-        
+
                 }
             });
         }
