@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import useStyles from '../styles/styles';
 import CheckIcon from '@material-ui/icons/Check';
 import HelpIcon from '@material-ui/icons/Help';
 import ClearIcon from '@material-ui/icons/Clear';
@@ -8,7 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {Button} from "@material-ui/core";
 import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
@@ -26,8 +25,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import NavBar from './Nav-Footer/NavBar'
 
+
+
 const EventDetail=(props) =>{
-  
+  const classes= useStyles();
   const [username, setUsername] = useState("")
   const [comment, setComment] = useState("")
 
@@ -53,21 +54,15 @@ const EventDetail=(props) =>{
     e.preventDefault()
   }
 
-  const useStyles=makeStyles((theme) => ({
-    image: {
-        backgroundImage: 'url(https://source.unsplash.com/random)',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      },
-    }));
-    const classes = useStyles();
+  
+
 
     const theme = createMuiTheme({
         palette: {
           primary: {
             main: '#2196f3'
-          }
+          },
+        
         }
       }
     )
@@ -99,30 +94,33 @@ const EventDetail=(props) =>{
     <>
     <NavBar />
     <Grid container style={{ minHeight: '100vh'}}>
-    <Grid item xs={false} sm={12} md={12} className={classes.image} style={{height:'500px', display:'flex', flexDirection:'row', alignItems:'flex-end'}}>
-    <Grid item xs={12} md={8}>
-      <h1 style={{marginLeft:'60px', fontSize:'40px'}}>{}Name Event</h1>
-      <h2 style={{marginLeft:'60px', fontSize:'25px'}}>{}People is comming</h2>
+    <Grid item xs={12} sm={12} md={12} className={classes.image} style={{height:'500px', display:'flex', flexDirection:'row', alignItems:'flex-end'}}>
+    <Grid item xs={12} sm={12} md={12}>
+      <h1 style={{ fontSize:'40px', marginLeft:'40px'}}>{}Name Event</h1>
+      <h2 style={{ fontSize:'25px', marginLeft:'40px'}}>{}People is comming</h2>
     </Grid>
     
     </Grid>
-    <Grid item xs={false} sm={12} md={12} m={12} style={{marginTop:'40px'}}>
-      <div style={{display:'flex', flexDirection:'row',  justifyContent:'space-between'}}>
-        <div style={{width:'60%'}}>
-          <h2 style={{marginLeft:'60px', fontSize:'25px'}}>Description</h2>
-          <p onClick={test} style={{marginLeft:'60px', fontSize:'18px'}}>{}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+    <Grid container xs={false} sm={12} md={11}  style={{margin:'10px auto'}}>
+    
+        <Grid container xs={11} sm={11} md={7} className={classes.marginAuto}>
+          <h2 style={{ fontSize:'25px'}}>Description</h2>
+          <p onClick={test} style={{fontSize:'18px'}}>{}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
             et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
             ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
             fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
             mollit anim id est laborum</p>
             <br></br>
             <br></br>
-
-            <iframe  style={{width:'93%', height:'400px', marginLeft:'60px', border:'none'}} src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10412.63775668291!2d-123.103834!3d49.273376!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x218237371f987037!2sMundo%20de%20la%20ciencia!5e0!3m2!1ses!2sca!4v1616609693534!5m2!1ses!2sca" ></iframe>
-            <div style={{marginTop:'40px'}}>
+            <br></br>
+            <iframe  style={{width:'93%', height:'400px', border:'none'}} src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10412.63775668291!2d-123.103834!3d49.273376!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x218237371f987037!2sMundo%20de%20la%20ciencia!5e0!3m2!1ses!2sca!4v1616609693534!5m2!1ses!2sca" ></iframe>
+            <Grid container xs={false} sm={12} md={12} style={{marginTop:'40px'}} className={classes.marginAuto}>
               <CssBaseline />
-              <Typography component="h1" variant="h5" style={{marginLeft:'60px'}}>Comments</Typography>
-              <List style={{marginLeft:'60px', marginTop:'15px'}}>
+              <Grid container xs={false} sm={12} md={12} className={classes.marginAuto}>
+              <Typography component="h1" variant="h5" >Comments</Typography>
+              </Grid>
+              <Grid container xs={false} sm={12} md={12} className={classes.marginAuto}>
+              <List style={{ width:'90%', marginTop:'15px'}}>
                 {comments.map(({ id, name, message, person }) => (
                   <React.Fragment key={id}>
                     <ListItem >
@@ -171,28 +169,25 @@ const EventDetail=(props) =>{
                 </TextareaAutosize>
                 <br></br>
                 <br></br>
-                        <ThemeProvider theme={theme}>
-                          <Button onClick={submitHandler} style={{width:'50%'}} className="w-full bg-blue-400 text-white py-3" variant="contained" size="medium" color="primary">
-                              <Typography component="h1" variant="h5">
+                       
+                  <Button onClick={submitHandler} style={{width:'50%'}} className={classes.primaryBtn} variant="contained" size="medium" color="primary">
+                       <Typography component="h1" variant="h5">
                               Send Comment
-                              </Typography>
-                          </Button>
-                      </ThemeProvider>
+                       </Typography>
+                  </Button>
+ 
                     </FormControl>
              </List>
+             </Grid>
              <br></br>
              <br></br>
              <br></br>
-            </div>
-          </div>
-          <div style={{ width:'30%', marginLeft:'10%',  display:'flex', flexDirection:'column', position:'sticky'}}>
-            <div>
-              <h4 style={{fontSize:'25px'}}>Weather</h4>
-              <div>{}</div>
+            </Grid>
+          </Grid>
+          <Grid container xs={12} sm={12} md={5}  className={classes.marginAuto}>
 
-            </div>
-          <Box style={{marginTop:'20px', height:'330px', width:'65%', borderRadius:'8px 8px 0px 0px', boxShadow:'1px 1px 4px 0px rgba(50, 50, 50, 0.75)'}} bgcolor="info.main">
-          <h2 style={{fontSize:'25px', marginBottom:'0px', color:'white', boxShadow:'1px 10px 0.5', padding:'10px 40px'}} >Details</h2>
+          <Grid container xs={12} sm={8} md={8} className={classes.detailsBox} bgcolor="info.main">
+          <h2 className={classes.detailsEvent} >Details</h2>
               <hr style={{width:'77%', border:'0.5px solid white'}}></hr>
             <div style={{display:'flex', flexDirection:'column', color:'white', padding:'10px 40px'}} >
               
@@ -201,7 +196,7 @@ const EventDetail=(props) =>{
                   <span style={{fontWeight:'700'}}>Date:</span>
                   <br></br>{}YYYYY/MM/DD
                 </p>
-                <p style={{fontSize:'18px', marginRight:'25px'}}>
+                <p style={{fontSize:'18px', marginLeft:'90px'}}>
                   <span style={{fontWeight:'700'}}>Time:</span>
                   <br></br>{}HH:MM
                 </p>
@@ -213,12 +208,12 @@ const EventDetail=(props) =>{
                 <br></br>{}City
               </p>
          </div>
-         <div style={{background:'white', marginTop:'4px', borderRadius:'0px 0px 8px 8px', display:'flex', flexDirection:'row'}}>
+         <Grid container style={{background:'white', marginTop:'4px', borderRadius:'0px 0px 8px 8px', display:'flex', flexDirection:'row'}}>
          <Button
           variant="contained"
           color="default"
-          style={{borderRadius:'0px 0px 0px 8px', padding:'20px',width:'33.3%'}}
-          className={classes.button}
+          className={classes.checkBtn}
+          style={{'hover':{color:'white', backgroundColor:'#2196f3'}}}
           startIcon={<CheckIcon />}
         >
         </Button>
@@ -240,13 +235,12 @@ const EventDetail=(props) =>{
           startIcon={<HelpIcon />}
         >
         </Button>
-         </div>
-      </Box>
-      </div>
-      </div>
+         </Grid>
       
-      <Grid item xs={false} sm={8} md={4} ></Grid>
-      <Grid item xs={false} sm={8} md={4} ></Grid>
+      </Grid>
+      </Grid>
+      
+     
     </Grid>
     </Grid>
     </>
