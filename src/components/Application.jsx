@@ -24,12 +24,17 @@ function Application() {
 
   useEffect(() => {
 
+    
+
     fetch('https://sarao-18c59-default-rtdb.firebaseio.com/events.json')
     .then(response => response.json())
     .then(responseData => {
         const loadedEvents = []
         
         for (const key in responseData){
+
+
+
             loadedEvents.push({
             id: key,
             title: responseData[key].title,
@@ -39,7 +44,8 @@ function Application() {
             location: responseData[key].location,
             address: responseData[key].address,
             city: responseData[key].city,
-            img: responseData[key].img
+            img: responseData[key].img,
+            peopleGoing: responseData[key].peopleGoing
 
         })
         }
@@ -56,7 +62,6 @@ function Application() {
           {/* <ProfilePage /> */}
 
           <EventPage events={events} />
-          <EventDetail />
 
         </>
       :
