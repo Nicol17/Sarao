@@ -14,6 +14,8 @@ import Bottom from './Nav-Footer/Bottom'
 import useStyles from '../styles/styles'
 import { storage } from "../firebase"
 import { EventContext } from "../providers/EventProvider";
+import { withStyles } from '@material-ui/core/styles';
+import { Select, MenuItem } from '@material-ui/core';
 import  '../styles/onlyCss.css';
 
 
@@ -28,6 +30,7 @@ const EventForm = (props) => {
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
     const [img, setImg] = useState(null);
+
 
     const eventContext = useContext(EventContext)
 
@@ -50,6 +53,10 @@ const EventForm = (props) => {
         
         },
     });
+
+    const handleCitySelection = (e) => {
+        setCity(e.target.value);
+    }
 
     const handleChange = (e) => {
         if (e.target.files[0]) {
@@ -214,7 +221,19 @@ const EventForm = (props) => {
                     autoFocus
                     onChange={(e) => {setAddress(e.target.value)}}
                 />
-                <TextField
+
+                <InputLabel>City
+                <Select
+                value={city}
+                onChange={handleCitySelection}>
+                    
+                    <MenuItem value="Vancouver">Vancouver</MenuItem>
+                    <MenuItem value="Toronto">Toronto</MenuItem>
+                    
+                </Select></InputLabel>
+                
+
+                {/* <TextField
                     style={{width:'45%'}}
                     type="text"
                     //variant="outlined"
@@ -230,7 +249,7 @@ const EventForm = (props) => {
                     placeholder="City"
                     autoFocus
                     onChange={(e) => {setCity(e.target.value)}}
-                />    
+                />     */}
                 </div> 
                 <br />
                 <div>

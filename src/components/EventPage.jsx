@@ -23,7 +23,7 @@ const EventPage = props => {
           <Grid container justify="center" >
             <img src="https://firebasestorage.googleapis.com/v0/b/sarao-18c59.appspot.com/o/images%2Findex.png?alt=media&token=630a5ea1-0861-4038-8058-67455da65c8d" alt="SaraoLogo" />
           </Grid>
-          <Typography variant='h5' align='center' color='textSecondary' parragraph>
+          <Typography variant='h5' align='center' color='textSecondary' paragraph>
             Join us on events Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, aliquam?
              </Typography>
 

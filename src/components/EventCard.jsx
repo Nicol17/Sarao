@@ -50,7 +50,7 @@ const EventCard = (props) => {
                    <Link to={{
                      pathname:`/event/${props.event.id}`,
                    }} >
-                    {/* {props.event.description} */}
+                    {props.event.description}
                    </Link>
                  </Typography>
                </CardContent>
