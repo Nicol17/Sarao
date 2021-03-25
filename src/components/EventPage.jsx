@@ -42,13 +42,13 @@ const EventPage = props => {
             {/* <Grid container spacing={3} Grid className={classes.cities}> */}
             <Grid className='buttonCities' spacing={4}>
               <Grid>
-                <Button variant='contained' color='secondary'> All </Button>
+                <Button onClick={props.filterHandlerAll} variant='contained' color='secondary'> All </Button>
               </Grid>
               <Grid>
-                <Button variant='contained' color='secondary'> Vancouver </Button>
+                <Button onClick={props.filterHandlerVan} variant='contained' color='secondary'> Vancouver </Button>
               </Grid>
               <Grid>
-                <Button variant='contained' color='secondary'> Toronto </Button>
+                <Button onClick={props.filterHandlerTor} variant='contained' color='secondary'> Toronto </Button>
               </Grid>
             </Grid>
           </Grid>

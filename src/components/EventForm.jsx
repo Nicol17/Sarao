@@ -98,7 +98,7 @@ const EventForm = (props) => {
                         city: city,
                         img: url
                     })
-
+                    
                 }
             });
         }
