@@ -11,10 +11,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import NavBar from './Nav-Footer/NavBar'
 import Bottom from './Nav-Footer/Bottom'
-// import useStyles from '../styles/styles'
+import useStyles from '../styles/styles'
 import { storage } from "../firebase"
 import { EventContext } from "../providers/EventProvider";
-
+import { withStyles } from '@material-ui/core/styles';
+import { Select, MenuItem } from '@material-ui/core';
 
 
 const EventForm = (props) => {
@@ -27,6 +28,7 @@ const EventForm = (props) => {
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
     const [img, setImg] = useState(null);
+
 
     const eventContext = useContext(EventContext)
 
@@ -49,6 +51,10 @@ const EventForm = (props) => {
         
         },
     });
+
+    const handleCitySelection = (e) => {
+        setCity(e.target.value);
+    }
 
     const handleChange = (e) => {
         if (e.target.files[0]) {
@@ -213,7 +219,19 @@ const EventForm = (props) => {
                     autoFocus
                     onChange={(e) => {setAddress(e.target.value)}}
                 />
-                <TextField
+
+                <label>City
+                <Select
+                value={city}
+                onChange={handleCitySelection}>
+                    
+                    <MenuItem value="Vancouver">Vancouver</MenuItem>
+                    <MenuItem value="Toronto">Toronto</MenuItem>
+                    
+                </Select></label>
+                
+
+                {/* <TextField
                     style={{width:'45%'}}
                     type="text"
                     //variant="outlined"
@@ -229,7 +247,7 @@ const EventForm = (props) => {
                     placeholder="City"
                     autoFocus
                     onChange={(e) => {setCity(e.target.value)}}
-                />    
+                />     */}
                 </div> 
                 <br />
                 <div>
