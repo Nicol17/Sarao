@@ -28,6 +28,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const storage = firebase.storage();
 const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => {
   auth.signInWithPopup(provider);
@@ -63,6 +64,4 @@ const getUserDocument = async uid => {
     console.error("Error fetching user", error);
   }
 };
-
-export const storage = firebase.storage();
 

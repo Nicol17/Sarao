@@ -11,8 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
 
-
-
 const SignIn = () => {
 
     const [email, setEmail] = useState('');
@@ -49,7 +47,7 @@ const SignIn = () => {
   
 
   return (
-    <div style={{ width: '100%', marginTop:'40px' }}>
+    <div style={{ width: '100%', marginTop:'40px', fontFamily: "'Poppins', sans-serif" }}>
         <h1 className="text-3xl mb-2 text-center font-bold" style={{textAlign:'center'}}>Sign In</h1>
         <div className="border border-blue-400 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
           {error !== null && <div className = "py-4 bg-red-600 w-full text-white text-center mb-3">{error}</div>}

@@ -27,7 +27,6 @@ const EventForm = (props) => {
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
     const [img, setImg] = useState(null);
-    const [progress, setProgress] = useState(0);
 
     const eventContext = useContext(EventContext)
 
@@ -37,26 +36,27 @@ const EventForm = (props) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-          },
+        },
         }));
 
     const classes = useStyles();
 
     const theme = createMuiTheme({
         palette:{
-          primary:{
-            main: '#2196f3'
-          }
+            primary:{
+                main: '#2196f3'
+        }
         
         },
-      });
+    });
 
-    const handleChange = e => {
-        setImg(e.target.files[0]);
-
-
-
+    const handleChange = (e) => {
+        if (e.target.files[0]) {
+            setImg(e.target.files[0])
+        }
     };
+
+    console.log("image: ", img)
 
     const submitHandler = async (e) => {
         e.preventDefault()
@@ -64,12 +64,6 @@ const EventForm = (props) => {
         const uploadTask = storage.ref(`images/${img.name}`).put(img);
         await uploadTask.on(
         "state_changed",
-        snapshot => {
-            const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            );
-            setProgress(progress);
-        },
         error => {
             console.log(error);
         },
@@ -80,7 +74,6 @@ const EventForm = (props) => {
             .getDownloadURL()
             .then(url => {
                 if(url) {
-
                     eventContext.addEventHandler({
                         title: title,
                         description: description,
@@ -99,7 +92,7 @@ const EventForm = (props) => {
     }
 
     return(
-       
+    
         <>
         <NavBar/>
         <Grid container style={{ minHeight: '100vh'}}>
@@ -109,8 +102,7 @@ const EventForm = (props) => {
             <h1 style={{textAlign:'center'}}>Create an Event</h1>
             
             <FormControl style={{ margin:'auto', width: '35%' }}>
-           
-             <TextField
+            <TextField
                     type="text"
                     //variant="outlined"
                     margin="normal"
@@ -126,10 +118,10 @@ const EventForm = (props) => {
                     autoFocus
                     onChange={(e) => {setTitle(e.target.value)}}
             />
-              
+            
                 <br />
                 <br />
-              <InputLabel style={{marginTop:'80px'}}>Description</InputLabel>
+            <InputLabel style={{marginTop:'80px'}}>Description</InputLabel>
                 <br></br>
                 <TextareaAutosize
                 id="description" 
@@ -161,9 +153,9 @@ const EventForm = (props) => {
                     onChange={(e) => {setDate(e.target.value)}}
                     InputLabelProps={{
                         shrink: true,
-                      }}
-                 />
-               
+                    }}
+                />
+            
                 <TextField
                     style={{width:'45%'}}
                     type="time"
@@ -181,10 +173,10 @@ const EventForm = (props) => {
                     onChange={(e) => {setTime(e.target.value)}}
                     InputLabelProps={{
                         shrink: true,
-                      }}
-                 />
-               </div>
-               
+                    }}
+                />
+            </div>
+            
                 <TextField
                     type="text"
                     //variant="outlined"
@@ -201,7 +193,7 @@ const EventForm = (props) => {
                     autoFocus
                     onChange={(e) => {setLocation(e.target.value)}}
             />
-             
+            
                 <br />
                 <div style={{display: 'flex', flexDirection:'row', justifyContent:'space-between'}}>
                 <TextField
@@ -258,7 +250,7 @@ const EventForm = (props) => {
                     autoFocus
                     InputLabelProps={{
                         shrink: true,
-                      }}
+                    }}
                     onChange={handleChange} 
                 /> 
                 </div>
@@ -271,7 +263,7 @@ const EventForm = (props) => {
                     </Typography>
                 </Button>
             </ThemeProvider>
-             
+            
             </FormControl>
             </div>
             </Grid>
