@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { storage } from '../firebase'
 import {Button, InputLabel} from "@material-ui/core";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -20,7 +21,9 @@ const EventForm = (props) => {
     const [location, setLocation] = useState("")
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
-    const [image, setImage] = useState()
+    const [image, setImage] = useState(null)
+    const [progress, setProgress] = useState(0);
+    const [url, setUrl] = useState("");
 
     
     const useStyles=makeStyles((theme) => ({
@@ -43,20 +46,46 @@ const EventForm = (props) => {
         },
       });
 
+      const handleImageSelect = (e) => {
+        if (e.target.files[0]) {
+            setImage(e.target.files[0])
+        }
+      };
+
+      console.log("image: ", image)
+
     const submitHandler = (e) => {
         e.preventDefault()
         props.onAddEvent({
             title: title,
             description: description,
             date: date,
-            time, time,
+            time: time,
             location: location,
             address: address,
             city: city,
-            image: image
+            image: {url}
         })
 
-    }
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
+        uploadTask.on(
+            "state_changed",
+            error => {
+                console.log(error)
+            },
+
+            () => {
+                storage
+                .ref("images")
+                .child(image.name)
+                .getDownloadURL()
+                .then(url => {
+                    console.log(url);
+                    setUrl(url);
+                });
+            }
+        );
+    };
 
    
 
@@ -202,7 +231,7 @@ const EventForm = (props) => {
                 <br />
                 <div>
                 <InputLabel style={{marginTop:'430px' }}>Image</InputLabel>
-                <TextField
+                <input
                     style={{marginTop:'40px', width:'100%' }}
                     type="file"
                     //variant="outlined"
@@ -212,7 +241,7 @@ const EventForm = (props) => {
                     id="image"
                     label="Image"
                     name="image"
-                    value = {image}
+                    // value = {image}
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="Image"
@@ -220,13 +249,14 @@ const EventForm = (props) => {
                     InputLabelProps={{
                         shrink: true,
                       }}
-                    onChange={(e) => {setImage(e.target.value)}}
+                    // onChange={(e) => {setImage(e.target.value)}}
+                    onChange={handleImageSelect}
                 /> 
                 </div>
                 <br />
                 <br />
             <ThemeProvider theme={theme}>
-                <Button className="w-full bg-blue-400 text-white py-3" variant="contained" size="medium" color="primary">
+                <Button onClick={submitHandler} className="w-full bg-blue-400 text-white py-3" variant="contained" size="medium" color="primary">
                     <Typography component="h1" variant="h5">
                     Create Event
                     </Typography>
