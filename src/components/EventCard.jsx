@@ -8,8 +8,11 @@ import { Typography, Button, Card, CardActions, CardContent, CardMedia, Grid } f
 import ShareIcon from '@material-ui/icons/Share';
 import StarIcon from '@material-ui/icons/Star';
 import PinDropIcon from '@material-ui/icons/PinDrop';
+import TimerIcon from '@material-ui/icons/Timer';
+import DateRangeIcon from '@material-ui/icons/DateRange';
 import useStyles from '../styles/styles'
 import { Link, NavLinkProps } from 'react-router-dom'
+
 
 
 const EventCard = (props) => {
@@ -36,12 +39,13 @@ const EventCard = (props) => {
                title='Image title'
                />
                <CardContent className={classes.cardContent}>
-                 <Typography gutterBottom variant='h4'>
+                 <Typography gutterBottom variant='h4' style={{align:"center"}}>
                      {props.event.title}
                  </Typography>
-                 <Typography gutterBottom variant='p'>
-                    {props.event.date}
+                 <Typography gutterBottom variant='h6'>
+                 <DateRangeIcon className={classes.icon}/>{props.event.date} <TimerIcon className={classes.icon}/>{props.event.time} 
                  </Typography>
+                 
                  <Typography gutterBottom variant='h6'color='primary'>
                  <PinDropIcon className={classes.icon}/>{props.event.location}
                  </Typography>
@@ -55,17 +59,13 @@ const EventCard = (props) => {
                       
                      }
                    }} >
-                    {props.event.description}
+                    {/* {props.event.description} */}
                    </Link>
-
                  </Typography>
                </CardContent>
                  <CardActions>
 
                    <Button size='small' color='primary' onClick={onGoingHandler} >I'm Going</Button>
-                   <Button size='small' color='default'>See Event details</Button>
-                   <StarIcon className={classes.icon}/>
-                   <ShareIcon className={classes.icon}/>
 
                  </CardActions>
              </Card>
