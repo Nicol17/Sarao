@@ -12,10 +12,6 @@ const EventPage = props => {
 
     const classes = useStyles();
 
-    const goToEventHandler = (event) => {
-      console.log('here i am: ', event)
-    }
-
     return (
       // NAVABAR
       <div>
@@ -65,7 +61,7 @@ const EventPage = props => {
                       props.events.map(
                           event => (
 
-                                    <EventCard  key={event.id} event={event} goToEvent={goToEventHandler}  />
+                                    <EventCard  key={event.id} event={event} />
 
                           )
                       )

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import CheckIcon from '@material-ui/icons/Check';
 import HelpIcon from '@material-ui/icons/Help';
@@ -25,11 +25,28 @@ import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import NavBar from './Nav-Footer/NavBar'
+import { UserContext } from "../providers/UserProvider";
+import { CommentContext } from "../providers/CommentProvider";
+
 
 const EventDetail=(props) =>{
   
-  const [username, setUsername] = useState("")
   const [comment, setComment] = useState("")
+  const [username, setUsername] = useState("")
+  const [comments, setComments] = useState([])
+
+
+  const user = useContext(UserContext);
+  const commentContext = useContext(CommentContext)
+
+  const settingUsername = () => {
+    if (user) {
+      setUsername(user.displayName)
+
+    }
+  }
+
+
 
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -39,23 +56,67 @@ const EventDetail=(props) =>{
   const [address, setAddress] = useState("")
   const [city, setCity] = useState("")
   const [img, setImg] = useState("");
+  const [peopleGoing, setPeopleGoing] = useState("");
+
 
   useEffect(() => {
-    // setTitle(props.location.eventProps.event.title)
-    // setLocation(props.location.eventProps.event.title)
+
+    //fecthing username
+    settingUsername()
+
+    // fecthing event info
+    fetch(`https://sarao-18c59-default-rtdb.firebaseio.com/events/${props.match.params.id}.json`)
+    .then(response => response.json())
+    .then(responseData => {
+        setTitle(responseData.title)
+        setDescription(responseData.description)
+        setDate(responseData.date)
+        setTime(responseData.time)
+        setLocation(responseData.location)
+        setAddress(responseData.address)
+        setCity(responseData.city)
+        setImg(responseData.img)
+        setPeopleGoing(responseData.peopleGoing)
+    })
+
+    // fecthing comments
+    fetch(`https://sarao-18c59-default-rtdb.firebaseio.com/events/${props.match.params.id}/comments.json`)
+    .then(response => response.json())
+    .then(responseData => {
+        const loadedComments = []
+        
+        for (const key in responseData){
+
+          loadedComments.push({
+            id: key,
+            message: responseData[key].comment,
+            name: responseData[key].username,
+            person: responseData[key].userPicture
+
+        })
+        }
+
+        setComments(loadedComments)
+
+    })
+
   })
 
-  const test = () => {
-    console.log(props.location.eventProps.event)
+  const commentSubmitHandler = async (e) => {
+    e.preventDefault()
+    commentContext.addCommentHandler({
+      eventId: props.match.params.id,
+      comment: comment,
+      username: username,
+      userPicture: user.photoURL
+    })
+
   }
 
-  const submitHandler = async (e) => {
-    e.preventDefault()
-  }
 
   const useStyles=makeStyles((theme) => ({
     image: {
-        backgroundImage: 'url(https://source.unsplash.com/random)',
+        backgroundImage: `url(${img})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -74,24 +135,24 @@ const EventDetail=(props) =>{
         
     
     
-   const comments = [
-     {id: 1,
-      name: 'John Doe',
-      message: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-      person: 'url(https://source.unsplash.com/random)',},
-      {id: 2,
-        name: 'Aleix Axelle',
-        message: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-        person: 'url(https://source.unsplash.com/random)',},
-     {id: 3,
-          name: 'Halli Adelheid',
-          message: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-          person: 'url(https://source.unsplash.com/random)',},
-      {id: 4,
-            name: 'Tanvi Caetana',
-            message: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-            person: 'url(https://source.unsplash.com/random)',},     
-   ]   
+  //  const comments = [
+  //    {id: 1,
+  //     name: 'John Doe',
+  //     message: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+  //     person: 'url(https://source.unsplash.com/random)',},
+  //     {id: 2,
+  //       name: 'Aleix Axelle',
+  //       message: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+  //       person: 'url(https://source.unsplash.com/random)',},
+  //    {id: 3,
+  //         name: 'Halli Adelheid',
+  //         message: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+  //         person: 'url(https://source.unsplash.com/random)',},
+  //     {id: 4,
+  //           name: 'Tanvi Caetana',
+  //           message: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+  //           person: 'url(https://source.unsplash.com/random)',},     
+  //  ]   
 
 
    return (
@@ -101,8 +162,8 @@ const EventDetail=(props) =>{
     <Grid container style={{ minHeight: '100vh'}}>
     <Grid item xs={false} sm={12} md={12} className={classes.image} style={{height:'500px', display:'flex', flexDirection:'row', alignItems:'flex-end'}}>
     <Grid item xs={12} md={8}>
-      <h1 style={{marginLeft:'60px', fontSize:'40px'}}>{}Name Event</h1>
-      <h2 style={{marginLeft:'60px', fontSize:'25px'}}>{}People is comming</h2>
+      <h1 style={{marginLeft:'60px', fontSize:'40px'}}>{title}</h1>
+      <h2 style={{marginLeft:'60px', fontSize:'25px'}}>{peopleGoing} People is comming</h2>
     </Grid>
     
     </Grid>
@@ -110,11 +171,7 @@ const EventDetail=(props) =>{
       <div style={{display:'flex', flexDirection:'row',  justifyContent:'space-between'}}>
         <div style={{width:'60%'}}>
           <h2 style={{marginLeft:'60px', fontSize:'25px'}}>Description</h2>
-          <p onClick={test} style={{marginLeft:'60px', fontSize:'18px'}}>{}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
-            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
-            mollit anim id est laborum</p>
+          <p style={{marginLeft:'60px', fontSize:'18px'}}>{description}</p>
             <br></br>
             <br></br>
 
@@ -154,7 +211,6 @@ const EventDetail=(props) =>{
                           placeholder="Your name"
                           autoFocus
                           style={{width:'50%'}}
-                          onChange={(e) => {setUsername(e.target.value)}}
                           />
                           <br></br>
                           <TextareaAutosize
@@ -172,7 +228,7 @@ const EventDetail=(props) =>{
                 <br></br>
                 <br></br>
                         <ThemeProvider theme={theme}>
-                          <Button onClick={submitHandler} style={{width:'50%'}} className="w-full bg-blue-400 text-white py-3" variant="contained" size="medium" color="primary">
+                          <Button onClick={commentSubmitHandler} style={{width:'50%'}} className="w-full bg-blue-400 text-white py-3" variant="contained" size="medium" color="primary">
                               <Typography component="h1" variant="h5">
                               Send Comment
                               </Typography>
@@ -199,18 +255,18 @@ const EventDetail=(props) =>{
               <div style={{display:'flex', flexDirection:'row', justifyContent: 'space-between'}}>
                 <p style={{fontSize:'18px'}}>
                   <span style={{fontWeight:'700'}}>Date:</span>
-                  <br></br>{}YYYYY/MM/DD
+                  <br></br>{date}
                 </p>
                 <p style={{fontSize:'18px', marginRight:'25px'}}>
                   <span style={{fontWeight:'700'}}>Time:</span>
-                  <br></br>{}HH:MM
+                  <br></br>{time}
                 </p>
               </div> 
               <p style={{fontSize:'18px'}}>
                 <span style={{fontWeight:'700'}}>Location:</span>
-                <br></br>{location}Location name
-                <br></br>{}Address
-                <br></br>{}City
+                <br></br>{location}
+                <br></br>{address}
+                <br></br>{city}
               </p>
          </div>
          <div style={{background:'white', marginTop:'4px', borderRadius:'0px 0px 8px 8px', display:'flex', flexDirection:'row'}}>

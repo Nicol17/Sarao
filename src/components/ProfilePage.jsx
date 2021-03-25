@@ -5,7 +5,6 @@ import {auth} from "../firebase";
 const ProfilePage = () => {
   const user = useContext(UserContext);
   const {photoURL, displayName, email} = user;
-  console.log(user);
   
 
   return (
