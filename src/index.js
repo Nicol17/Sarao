@@ -5,13 +5,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import EventContextProvider from './providers/EventProvider'
+import CommentContextProvider from './providers/CommentProvider'
+
 
 ReactDOM.render(
-  <EventContextProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </EventContextProvider>,
+  <CommentContextProvider>
+    <EventContextProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </EventContextProvider>
+  </CommentContextProvider>,
 
   document.getElementById('root')
 );

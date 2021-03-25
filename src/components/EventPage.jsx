@@ -13,10 +13,6 @@ const EventPage = props => {
 
     const classes = useStyles();
 
-    const goToEventHandler = (event) => {
-      console.log('here i am: ', event)
-    }
-
     return (
       // NAVABAR
       <div>
@@ -27,8 +23,10 @@ const EventPage = props => {
           <Grid container justify="center" >
             <img src="https://firebasestorage.googleapis.com/v0/b/sarao-18c59.appspot.com/o/images%2Findex.png?alt=media&token=630a5ea1-0861-4038-8058-67455da65c8d" alt="SaraoLogo" />
           </Grid>
+
           <Typography variant='h5' align='center' color='textSecondary' parragraph>
           Securely connect, collaborate and celebrate in Canada. With Sarao, everyone can safely create and join events, meetings, celebrations, outdoor and indoor activities.
+
              </Typography>
 
         </Container>
@@ -66,7 +64,7 @@ const EventPage = props => {
                       props.events.map(
                           event => (
 
-                                    <EventCard  key={event.id} event={event} goToEvent={goToEventHandler}  />
+                                    <EventCard  key={event.id} event={event} />
 
                           )
                       )

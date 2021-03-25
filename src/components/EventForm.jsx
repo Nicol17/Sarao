@@ -14,6 +14,8 @@ import Bottom from './Nav-Footer/Bottom'
 import useStyles from '../styles/styles'
 import { storage } from "../firebase"
 import { EventContext } from "../providers/EventProvider";
+import { withStyles } from '@material-ui/core/styles';
+import { Select, MenuItem } from '@material-ui/core';
 import  '../styles/onlyCss.css';
 
 
@@ -28,6 +30,7 @@ const EventForm = (props) => {
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
     const [img, setImg] = useState(null);
+
 
     const eventContext = useContext(EventContext)
 
@@ -51,6 +54,10 @@ const EventForm = (props) => {
         },
     });
 
+    const handleCitySelection = (e) => {
+        setCity(e.target.value);
+    }
+
     const handleChange = (e) => {
         if (e.target.files[0]) {
             setImg(e.target.files[0])
@@ -65,6 +72,11 @@ const EventForm = (props) => {
         const uploadTask = storage.ref(`images/${img.name}`).put(img);
         await uploadTask.on(
         "state_changed",
+        snapshot => {
+            const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+        },
         error => {
             console.log(error);
         },
@@ -75,17 +87,18 @@ const EventForm = (props) => {
             .getDownloadURL()
             .then(url => {
                 if(url) {
+
                     eventContext.addEventHandler({
                         title: title,
                         description: description,
                         date: date,
-                        time: time,
+                        time, time,
                         location: location,
                         address: address,
                         city: city,
                         img: url
                     })
-        
+
                 }
             });
         }
@@ -214,7 +227,19 @@ const EventForm = (props) => {
                     // autoFocus
                     onChange={(e) => {setAddress(e.target.value)}}
                 />
-                <TextField
+
+                <InputLabel>City
+                <Select
+                value={city}
+                onChange={handleCitySelection}>
+                    
+                    <MenuItem value="Vancouver">Vancouver</MenuItem>
+                    <MenuItem value="Toronto">Toronto</MenuItem>
+                    
+                </Select></InputLabel>
+                
+
+                {/* <TextField
                     style={{width:'45%'}}
                     type="text"
                     //variant="outlined"
@@ -230,7 +255,7 @@ const EventForm = (props) => {
                     placeholder="City"
                     // autoFocus
                     onChange={(e) => {setCity(e.target.value)}}
-                />    
+                />     */}
                 </div> 
                 <br />
                 <div>

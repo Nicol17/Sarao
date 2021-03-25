@@ -11,23 +11,18 @@ import PinDropIcon from '@material-ui/icons/PinDrop';
 import TimerIcon from '@material-ui/icons/Timer';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import useStyles from '../styles/styles'
-import { Link, NavLinkProps } from 'react-router-dom'
+import { Link, BrowserRouter as Router, useLocation } from 'react-router-dom'
 
 
 
 const EventCard = (props) => {
 
-
     const classes = useStyles();
-
-
     const eventContext = useContext(EventContext)
     const user = useContext(UserContext)
   
     const onGoingHandler = () => {
-
         eventContext.subscribeToEvent(props.event, user.displayName)
-        
     }
 
     return(
@@ -36,6 +31,7 @@ const EventCard = (props) => {
              <Card className={classes.card}>
                <CardMedia className={classes.cardMedia} 
                image={props.event.img}
+
                title='Image title'
                />
                <CardContent className={classes.cardContent}>
@@ -52,14 +48,9 @@ const EventCard = (props) => {
                  <Typography>
 
                    <Link to={{
-                     pathname:"/event",
-                     eventProps:{
-
-                        event: props.event,
-                      
-                     }
+                     pathname:`/event/${props.event.id}`,
                    }} >
-                    {/* {props.event.description} */}
+                    {props.event.description}
                    </Link>
                  </Typography>
                  <CardActions align='right'>
