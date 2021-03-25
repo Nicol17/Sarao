@@ -24,18 +24,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import NavBar from './Nav-Footer/NavBar'
 
 const EventDetail=(props) =>{
   
-const [username, setUsername] = useState("")
-const [comment, setComment] = useState("")
-import React, { useState, useEffect } from 'react';
-import NavBar from './Nav-Footer/NavBar'
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-
-const EventDetail= (props) =>{
+  const [username, setUsername] = useState("")
+  const [comment, setComment] = useState("")
 
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -69,11 +63,14 @@ const EventDetail= (props) =>{
     }));
     const classes = useStyles();
 
-    // const theme = createMuiTheme({
-    //     palette:{
-    //       primary:{
-    //         main: '#2196f3'
-    //       }
+    const theme = createMuiTheme({
+        palette: {
+          primary: {
+            main: '#2196f3'
+          }
+        }
+      }
+    )
         
     
     
@@ -254,6 +251,6 @@ const EventDetail= (props) =>{
     </Grid>
     </>
   );
-}
+
 }
 export default EventDetail;
