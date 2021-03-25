@@ -14,13 +14,10 @@ import Bottom from './Nav-Footer/Bottom'
 import useStyles from '../styles/styles'
 import { storage } from "../firebase"
 import { EventContext } from "../providers/EventProvider";
-<<<<<<< HEAD
 import { withStyles } from '@material-ui/core/styles';
 import { Select, MenuItem } from '@material-ui/core';
-=======
 import  '../styles/onlyCss.css';
 
->>>>>>> f917696c9a5fd4783e9de13a1e8a14b22d180872
 
 
 const EventForm = (props) => {
@@ -225,7 +222,7 @@ const EventForm = (props) => {
                     onChange={(e) => {setAddress(e.target.value)}}
                 />
 
-                <label>City
+                <InputLabel>City
                 <Select
                 value={city}
                 onChange={handleCitySelection}>
@@ -233,7 +230,7 @@ const EventForm = (props) => {
                     <MenuItem value="Vancouver">Vancouver</MenuItem>
                     <MenuItem value="Toronto">Toronto</MenuItem>
                     
-                </Select></label>
+                </Select></InputLabel>
                 
 
                 {/* <TextField
