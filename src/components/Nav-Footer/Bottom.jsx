@@ -1,7 +1,7 @@
 import React from 'react'
 
 //STYLING
-import { Typography, AppBar, Button, CssBaseline, Grid, Toolbar, Container } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import useStyles from '../../styles/styles'
 
 

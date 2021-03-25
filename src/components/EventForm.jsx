@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {Button, InputLabel} from "@material-ui/core";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
@@ -11,8 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import NavBar from './Nav-Footer/NavBar'
 import Bottom from './Nav-Footer/Bottom'
-import useStyles from '../styles/styles'
+// import useStyles from '../styles/styles'
 import { storage } from "../firebase"
+import { EventContext } from "../providers/EventProvider";
 
 
 
@@ -25,10 +26,9 @@ const EventForm = (props) => {
     const [location, setLocation] = useState("")
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
-
     const [img, setImg] = useState(null);
-    const [url, setUrl] = useState("");
-    const [progress, setProgress] = useState(0);
+
+    const eventContext = useContext(EventContext)
 
     const useStyles=makeStyles((theme) => ({
         image: {
@@ -36,26 +36,27 @@ const EventForm = (props) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-          },
+        },
         }));
 
     const classes = useStyles();
 
     const theme = createMuiTheme({
         palette:{
-          primary:{
-            main: '#2196f3'
-          }
+            primary:{
+                main: '#2196f3'
+        }
         
         },
-      });
+    });
 
-    const handleChange = e => {
-        setImg(e.target.files[0]);
-
-
-
+    const handleChange = (e) => {
+        if (e.target.files[0]) {
+            setImg(e.target.files[0])
+        }
     };
+
+    console.log("image: ", img)
 
     const submitHandler = async (e) => {
         e.preventDefault()
@@ -63,12 +64,6 @@ const EventForm = (props) => {
         const uploadTask = storage.ref(`images/${img.name}`).put(img);
         await uploadTask.on(
         "state_changed",
-        snapshot => {
-            const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            );
-            setProgress(progress);
-        },
         error => {
             console.log(error);
         },
@@ -79,12 +74,11 @@ const EventForm = (props) => {
             .getDownloadURL()
             .then(url => {
                 if(url) {
-
-                    props.onAddEvent({
+                    eventContext.addEventHandler({
                         title: title,
                         description: description,
                         date: date,
-                        time, time,
+                        time: time,
                         location: location,
                         address: address,
                         city: city,
@@ -98,7 +92,7 @@ const EventForm = (props) => {
     }
 
     return(
-       
+    
         <>
         <NavBar/>
         <Grid container style={{ minHeight: '100vh'}}>
@@ -108,8 +102,7 @@ const EventForm = (props) => {
             <h1 style={{textAlign:'center'}}>Create an Event</h1>
             
             <FormControl style={{ margin:'auto', width: '35%' }}>
-           
-             <TextField
+            <TextField
                     type="text"
                     //variant="outlined"
                     margin="normal"
@@ -125,10 +118,10 @@ const EventForm = (props) => {
                     autoFocus
                     onChange={(e) => {setTitle(e.target.value)}}
             />
-              
+            
                 <br />
                 <br />
-              <InputLabel style={{marginTop:'80px'}}>Description</InputLabel>
+            <InputLabel style={{marginTop:'80px'}}>Description</InputLabel>
                 <br></br>
                 <TextareaAutosize
                 id="description" 
@@ -160,9 +153,9 @@ const EventForm = (props) => {
                     onChange={(e) => {setDate(e.target.value)}}
                     InputLabelProps={{
                         shrink: true,
-                      }}
-                 />
-               
+                    }}
+                />
+            
                 <TextField
                     style={{width:'45%'}}
                     type="time"
@@ -180,10 +173,10 @@ const EventForm = (props) => {
                     onChange={(e) => {setTime(e.target.value)}}
                     InputLabelProps={{
                         shrink: true,
-                      }}
-                 />
-               </div>
-               
+                    }}
+                />
+            </div>
+            
                 <TextField
                     type="text"
                     //variant="outlined"
@@ -200,7 +193,7 @@ const EventForm = (props) => {
                     autoFocus
                     onChange={(e) => {setLocation(e.target.value)}}
             />
-             
+            
                 <br />
                 <div style={{display: 'flex', flexDirection:'row', justifyContent:'space-between'}}>
                 <TextField
@@ -257,7 +250,7 @@ const EventForm = (props) => {
                     autoFocus
                     InputLabelProps={{
                         shrink: true,
-                      }}
+                    }}
                     onChange={handleChange} 
                 /> 
                 </div>
@@ -270,7 +263,7 @@ const EventForm = (props) => {
                     </Typography>
                 </Button>
             </ThemeProvider>
-             
+            
             </FormControl>
             </div>
             </Grid>

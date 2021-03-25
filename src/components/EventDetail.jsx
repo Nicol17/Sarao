@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import CheckIcon from '@material-ui/icons/Check';
 import HelpIcon from '@material-ui/icons/Help';
@@ -25,11 +25,35 @@ import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
-//width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
 const EventDetail=(props) =>{
   
-  const [username, setUsername] = useState("")
-  const [comment, setComment] = useState("")
+const [username, setUsername] = useState("")
+const [comment, setComment] = useState("")
+import React, { useState, useEffect } from 'react';
+import NavBar from './Nav-Footer/NavBar'
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+
+const EventDetail= (props) =>{
+
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [date, setDate] = useState("")
+  const [time, setTime] = useState("")
+  const [location, setLocation] = useState("")
+  const [address, setAddress] = useState("")
+  const [city, setCity] = useState("")
+  const [img, setImg] = useState("");
+
+  useEffect(() => {
+    // setTitle(props.location.eventProps.event.title)
+    // setLocation(props.location.eventProps.event.title)
+  })
+
+  const test = () => {
+    console.log(props.location.eventProps.event)
+  }
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -45,14 +69,13 @@ const EventDetail=(props) =>{
     }));
     const classes = useStyles();
 
-    const theme = createMuiTheme({
-        palette:{
-          primary:{
-            main: '#2196f3'
-          }
+    // const theme = createMuiTheme({
+    //     palette:{
+    //       primary:{
+    //         main: '#2196f3'
+    //       }
         
-        },
-      });
+    
     
    const comments = [
      {id: 1,
@@ -73,14 +96,16 @@ const EventDetail=(props) =>{
             person: 'url(https://source.unsplash.com/random)',},     
    ]   
 
-  return (
+
+   return (
+
     <>
-    
+    <NavBar />
     <Grid container style={{ minHeight: '100vh'}}>
     <Grid item xs={false} sm={12} md={12} className={classes.image} style={{height:'500px', display:'flex', flexDirection:'row', alignItems:'flex-end'}}>
     <Grid item xs={12} md={8}>
       <h1 style={{marginLeft:'60px', fontSize:'40px'}}>{}Name Event</h1>
-      <h2 style={{marginLeft:'60px', fontSize:'25px'}}>{} People is comming</h2>
+      <h2 style={{marginLeft:'60px', fontSize:'25px'}}>{}People is comming</h2>
     </Grid>
     
     </Grid>
@@ -88,7 +113,7 @@ const EventDetail=(props) =>{
       <div style={{display:'flex', flexDirection:'row',  justifyContent:'space-between'}}>
         <div style={{width:'60%'}}>
           <h2 style={{marginLeft:'60px', fontSize:'25px'}}>Description</h2>
-          <p style={{marginLeft:'60px', fontSize:'18px'}}>{}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+          <p onClick={test} style={{marginLeft:'60px', fontSize:'18px'}}>{}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
             et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
             ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
             fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
@@ -186,7 +211,7 @@ const EventDetail=(props) =>{
               </div> 
               <p style={{fontSize:'18px'}}>
                 <span style={{fontWeight:'700'}}>Location:</span>
-                <br></br>{}Location name
+                <br></br>{location}Location name
                 <br></br>{}Address
                 <br></br>{}City
               </p>
@@ -230,5 +255,5 @@ const EventDetail=(props) =>{
     </>
   );
 }
-
-export default EventDetail
+}
+export default EventDetail;
