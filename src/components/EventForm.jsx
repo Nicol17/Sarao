@@ -116,7 +116,7 @@ const EventForm = (props) => {
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="Name your event"
-                    autoFocus
+                    // autoFocus
                     onChange={(e) => {setTitle(e.target.value)}}
             />
             
@@ -126,7 +126,7 @@ const EventForm = (props) => {
                 <br></br>
                 <TextareaAutosize
                 id="description" 
-                autoFocus
+                // autoFocus
                 rowsMin={3}
                 label="Description"
                 value={description}
@@ -191,7 +191,7 @@ const EventForm = (props) => {
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="City"
-                    autoFocus
+                    // autoFocus
                     onChange={(e) => {setLocation(e.target.value)}}
             />
             
@@ -211,7 +211,7 @@ const EventForm = (props) => {
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="Address"
-                    autoFocus
+                    // autoFocus
                     onChange={(e) => {setAddress(e.target.value)}}
                 />
                 <TextField
@@ -228,7 +228,7 @@ const EventForm = (props) => {
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="City"
-                    autoFocus
+                    // autoFocus
                     onChange={(e) => {setCity(e.target.value)}}
                 />    
                 </div> 
@@ -248,7 +248,7 @@ const EventForm = (props) => {
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="Image"
-                    autoFocus
+                    // autoFocus
                     InputLabelProps={{
                         shrink: true,
                     }}
