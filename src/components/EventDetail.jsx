@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react';
-import useStyles from '../styles/styles';
-=======
+
 import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
->>>>>>> main
+import useStyles from '../styles/styles';
+
 import CheckIcon from '@material-ui/icons/Check';
 import HelpIcon from '@material-ui/icons/Help';
 import ClearIcon from '@material-ui/icons/Clear';
@@ -37,7 +34,7 @@ import { CommentContext } from "../providers/CommentProvider";
 
 const EventDetail=(props) =>{
 
-  const classes= useStyles();
+ 
   const [comment, setComment] = useState("")
   const [username, setUsername] = useState("")
   const [comments, setComments] = useState([])
@@ -153,26 +150,23 @@ const EventDetail=(props) =>{
   //  ]   
 
 
-   return (
+  return (
 
     <>
     <NavBar />
     <Grid container style={{ minHeight: '100vh'}}>
-<<<<<<< HEAD
-    <Grid item xs={12} sm={12} md={12} className={classes.image} style={{height:'500px', display:'flex', flexDirection:'row', alignItems:'flex-end'}}>
-    <Grid item xs={12} sm={12} md={12}>
-      <h1 style={{marginLeft:'60px', fontSize:'40px'}}>{title}</h1>
-      <h2 style={{marginLeft:'60px', fontSize:'25px'}}>{peopleGoing} People is comming</h2>
-    </Grid>
-    
-    </Grid>
-    <Grid container xs={false} sm={12} md={11}  style={{margin:'10px auto'}}>
+      <Grid item xs={12} sm={12} md={12} className={classes.image} style={{height:'500px', display:'flex', flexDirection:'row', alignItems:'flex-end'}}>
+        <Grid item xs={12} sm={12} md={12}>
+          <h1 style={{marginLeft:'60px', fontSize:'40px'}}>{title}</h1>
+          <h2 style={{marginLeft:'60px', fontSize:'25px'}}>{peopleGoing} People is comming</h2>
+        </Grid>
+      </Grid>
+      <Grid container xs={false} sm={12} md={11}  style={{margin:'10px auto'}}>
     
         <Grid container xs={11} sm={11} md={7} className={classes.marginAuto}>
-          <h2 style={{ fontSize:'25px'}}>Description</h2>
-          <p style={{marginLeft:'60px', fontSize:'18px'}}>{description}</p>
-
-          
+            <h2 style={{ fontSize:'25px'}}>Description</h2>
+            <br></br>
+            <p style={{marginLeft:'60px', fontSize:'18px'}}>{description}</p>
             <br></br>
             <br></br>
             <br></br>
@@ -183,63 +177,64 @@ const EventDetail=(props) =>{
               <Typography component="h1" variant="h5" >Comments</Typography>
               </Grid>
               <Grid container xs={false} sm={12} md={12} className={classes.marginAuto}>
-              <List style={{ width:'90%', marginTop:'15px'}}>
-                {comments.map(({ id, name, message, person }) => (
-                  <React.Fragment key={id}>
-                    <ListItem >
-                      <ListItemAvatar>
-                        <Avatar alt="Profile Picture" src={person} />
-                      </ListItemAvatar>
-                      <ListItemText primary={name} secondary={message} />
-                    </ListItem>
-                  </React.Fragment>
-                  
-                ))}
-                <hr style={{background:'black', border:'1px solid gray'}}></hr>
-                <br></br>
-                
-                <Typography component="h4" variant="h5" >Leave a comment</Typography>
-                 <FormControl style={{width:'100%'}}>
-                          <TextField
-                          type="text"
-                          //variant="outlined"
-                          margin="normal"
-                          //required
-                          fullwidth
-                          id="username"
-                          label="User Name"
-                          name="Username"
-                          value = {username}
-                          //autoComplete="email"
-                          className="my-1 p-1 w-full"
-                          placeholder="Your name"
-                          autoFocus
-                          style={{width:'50%'}}
-                          />
-                          <br></br>
-                          <TextareaAutosize
-                          id="comment" 
-                          autoFocus
-                          rowsMin={3}
-                          style={{width:'90%'}}
-                          label="Comment"
-                          value={comment}
-                          aria-label="empty textarea" 
-                          placeholder="Leave a comment"
-                          onChange={(e) => {setComment(e.target.value)}}
-                          >
-                </TextareaAutosize>
-                <br></br>
-                <br></br>
-
-                          <Button onClick={commentSubmitHandler} style={{width:'50%'}} className="w-full bg-blue-400 text-white py-3" variant="contained" size="medium" color="primary">
-                              <Typography component="h1" variant="h5">
-                              Send Comment
-                       </Typography>
-                  </Button>
- 
-                    </FormControl>
-             </List>
+                    <List style={{ width:'90%', marginTop:'15px'}}>
+                      {comments.map(({ id, name, message, person }) => (
+                        <React.Fragment key={id}>
+                          <ListItem >
+                            <ListItemAvatar>
+                              <Avatar alt="Profile Picture" src={person} />
+                            </ListItemAvatar>
+                            <ListItemText primary={name} secondary={message} />
+                          </ListItem>
+                        </React.Fragment>
+                        
+                      ))}
+                      <hr style={{background:'black', border:'1px solid gray'}}></hr>
+                      <br></br>
+                      
+                      <Typography component="h4" variant="h5" >Leave a comment</Typography>
+                      <FormControl style={{width:'100%'}}>
+                                <TextField
+                                type="text"
+                                //variant="outlined"
+                                margin="normal"
+                                //required
+                                fullwidth
+                                id="username"
+                                label="User Name"
+                                name="Username"
+                                value = {username}
+                                //autoComplete="email"
+                                className="my-1 p-1 w-full"
+                                placeholder="Your name"
+                                autoFocus
+                                style={{width:'50%'}}
+                                />
+                                <br></br>
+                                <TextareaAutosize
+                                id="comment" 
+                                autoFocus
+                                rowsMin={3}
+                                style={{width:'90%'}}
+                                label="Comment"
+                                value={comment}
+                                aria-label="empty textarea" 
+                                placeholder="Leave a comment"
+                                onChange={(e) => {setComment(e.target.value)}}
+                                >
+                      </TextareaAutosize>
+                      <br></br>
+                      <br></br>
+                            
+                        <Button onClick={commentSubmitHandler} style={{width:'50%'}} className={classes.primaryBtn} variant="contained" size="medium" color="primary" >
+                              
+                            <Typography component="h1" variant="h5">
+                                    Send Comment
+                            </Typography>
+                        </Button>
+      
+                          </FormControl>
+                  </List>
              </Grid>
              <br></br>
              <br></br>
@@ -248,9 +243,9 @@ const EventDetail=(props) =>{
           </Grid>
           <Grid container xs={12} sm={12} md={5}  className={classes.marginAuto}>
 
-          <Grid container xs={12} sm={8} md={8} className={classes.detailsBox} bgcolor="info.main">
-          <h2 className={classes.detailsEvent} >Details</h2>
-              <hr style={{width:'77%', border:'0.5px solid white'}}></hr>
+            <Grid container xs={12} sm={8} md={8} className={classes.detailsBox} bgcolor="info.main">
+              <h2 className={classes.detailsEvent} >Details</h2>
+                  <hr style={{width:'77%', border:'0.5px solid white'}}></hr>
             <div style={{display:'flex', flexDirection:'column', color:'white', padding:'10px 40px'}} >
               
               <div style={{display:'flex', flexDirection:'row', justifyContent: 'space-between'}}>
@@ -306,7 +301,7 @@ const EventDetail=(props) =>{
     </Grid>
     </Grid>
     </>
-  );
 
-}
+  );
+  }
 export default EventDetail;
