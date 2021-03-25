@@ -1,19 +1,24 @@
-import React, { useState } from 'react'
-import { storage } from '../firebase'
+import React, { useState, useContext } from 'react'
 import {Button, InputLabel} from "@material-ui/core";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import NavBar from './Nav-Footer/NavBar'
+import Bottom from './Nav-Footer/Bottom'
+// import useStyles from '../styles/styles'
+import { storage } from "../firebase"
+import { EventContext } from "../providers/EventProvider";
+
 
 
 const EventForm = (props) => {
-    
+
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [date, setDate] = useState("")
@@ -21,85 +26,83 @@ const EventForm = (props) => {
     const [location, setLocation] = useState("")
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
-    const [image, setImage] = useState(null)
-    const [progress, setProgress] = useState(0);
-    const [url, setUrl] = useState("");
+    const [img, setImg] = useState(null);
 
-    
+    const eventContext = useContext(EventContext)
+
     const useStyles=makeStyles((theme) => ({
         image: {
             backgroundImage: 'url(https://source.unsplash.com/random)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-          },
+        },
         }));
-    const classes = useStyles();
 
+    const classes = useStyles();
 
     const theme = createMuiTheme({
         palette:{
-          primary:{
-            main: '#2196f3'
-          }
+            primary:{
+                main: '#2196f3'
+        }
         
         },
-      });
+    });
 
-      const handleImageSelect = (e) => {
+    const handleChange = (e) => {
         if (e.target.files[0]) {
             setImage(e.target.files[0])
         }
-      };
-
-      console.log("image: ", image)
-
-    const submitHandler = (e) => {
-        e.preventDefault()
-        props.onAddEvent({
-            title: title,
-            description: description,
-            date: date,
-            time: time,
-            location: location,
-            address: address,
-            city: city,
-            image: {url}
-        })
-
-        const uploadTask = storage.ref(`images/${image.name}`).put(image);
-        uploadTask.on(
-            "state_changed",
-            error => {
-                console.log(error)
-            },
-
-            () => {
-                storage
-                .ref("images")
-                .child(image.name)
-                .getDownloadURL()
-                .then(url => {
-                    console.log(url);
-                    setUrl(url);
-                });
-            }
-        );
     };
 
-   
+    console.log("image: ", image)
+
+    const submitHandler = async (e) => {
+        e.preventDefault()
+
+        const uploadTask = storage.ref(`images/${img.name}`).put(img);
+        await uploadTask.on(
+        "state_changed",
+        error => {
+            console.log(error);
+        },
+        () => {
+            storage
+            .ref("images")
+            .child(img.name)
+            .getDownloadURL()
+            .then(url => {
+                if(url) {
+                    eventContext.addEventHandler({
+                        title: title,
+                        description: description,
+                        date: date,
+                        time: time,
+                        location: location,
+                        address: address,
+                        city: city,
+                        img: url
+                    })
+        
+                }
+            });
+        }
+        );
+    }
 
     return(
-       
+    
         <>
+        <NavBar/>
         <Grid container style={{ minHeight: '100vh'}}>
         <Grid item xs={false} sm={8} md={12} className={classes.image} style={{height:'300px'}}/>
-        <div style={{ display:'flex', flexDirection:'column',width: '100%', marginTop:'40px', marginBottom:'50px' }}>
+        <div className={classes.hero}>  
+
             <h1 style={{textAlign:'center'}}>Create an Event</h1>
             
             <FormControl style={{ margin:'auto', width: '35%' }}>
-           
-             <TextField
+            <TextField
                     type="text"
                     //variant="outlined"
                     margin="normal"
@@ -115,10 +118,10 @@ const EventForm = (props) => {
                     autoFocus
                     onChange={(e) => {setTitle(e.target.value)}}
             />
-              
+            
                 <br />
                 <br />
-              <InputLabel style={{marginTop:'80px' }}>Description</InputLabel>
+            <InputLabel style={{marginTop:'80px'}}>Description</InputLabel>
                 <br></br>
                 <TextareaAutosize
                 id="description" 
@@ -150,9 +153,9 @@ const EventForm = (props) => {
                     onChange={(e) => {setDate(e.target.value)}}
                     InputLabelProps={{
                         shrink: true,
-                      }}
-                 />
-               
+                    }}
+                />
+            
                 <TextField
                     style={{width:'45%'}}
                     type="time"
@@ -170,10 +173,10 @@ const EventForm = (props) => {
                     onChange={(e) => {setTime(e.target.value)}}
                     InputLabelProps={{
                         shrink: true,
-                      }}
-                 />
-               </div>
-               
+                    }}
+                />
+            </div>
+            
                 <TextField
                     type="text"
                     //variant="outlined"
@@ -190,7 +193,7 @@ const EventForm = (props) => {
                     autoFocus
                     onChange={(e) => {setLocation(e.target.value)}}
             />
-             
+            
                 <br />
                 <div style={{display: 'flex', flexDirection:'row', justifyContent:'space-between'}}>
                 <TextField
@@ -241,16 +244,14 @@ const EventForm = (props) => {
                     id="image"
                     label="Image"
                     name="image"
-                    // value = {image}
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="Image"
                     autoFocus
                     InputLabelProps={{
                         shrink: true,
-                      }}
-                    // onChange={(e) => {setImage(e.target.value)}}
-                    onChange={handleImageSelect}
+                    }}
+                    onChange={handleChange} 
                 /> 
                 </div>
                 <br />
@@ -262,10 +263,11 @@ const EventForm = (props) => {
                     </Typography>
                 </Button>
             </ThemeProvider>
-             
+            
             </FormControl>
             </div>
             </Grid>
+            <Bottom/>
         </>
     )
 }
