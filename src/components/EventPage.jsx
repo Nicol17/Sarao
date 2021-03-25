@@ -39,15 +39,16 @@ const EventPage = props => {
                   Upcoming events
                 </Typography>
               </Grid>
-            <Grid className='buttonCities' >
+            <Grid className='buttonCities' spacing={4}>
               <Grid style={{margin:'0 8px'}}>
-                <Button variant='contained' color='secondary'> All </Button>
+                <Button onClick={props.filterHandlerAll} variant='contained' color='secondary'> All </Button>
               </Grid>
               <Grid style={{margin:'0 8px'}}>
-                <Button variant='contained' color='secondary'> Vancouver </Button>
+                <Button onClick={props.filterHandlerVan} variant='contained' color='secondary'> Vancouver </Button>
               </Grid>
               <Grid style={{margin:'0 8px'}}>
-                <Button variant='contained' color='secondary'> Toronto </Button>
+                <Button onClick={props.filterHandlerTor} variant='contained' color='secondary'> Toronto </Button>
+
               </Grid>
             </Grid>
           </Grid>

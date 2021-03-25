@@ -19,8 +19,7 @@ function Application() {
   const user = useContext(UserContext);
   const eventContext = useContext(EventContext)
   const [events, setEvents] = useState([])
-
-
+  const [filter, setFilter] = useState("all")
 
   useEffect(() => {
 
@@ -29,39 +28,121 @@ function Application() {
     fetch('https://sarao-18c59-default-rtdb.firebaseio.com/events.json')
     .then(response => response.json())
     .then(responseData => {
-        const loadedEvents = []
+
+        if (filter === "toronto") {
         
-        for (const key in responseData){
+            for (const key in responseData){
 
+              if (responseData[key].city === 'Toronto') {
+                const loadedEvents = []
 
+                loadedEvents.push({
+                id: key,
+                title: responseData[key].title,
+                description: responseData[key].description,
+                date: responseData[key].date,
+                time: responseData[key].time,
+                location: responseData[key].location,
+                address: responseData[key].address,
+                city: responseData[key].city,
+                img: responseData[key].img,
+                peopleGoing: responseData[key].peopleGoing
+                })
 
-            loadedEvents.push({
-            id: key,
-            title: responseData[key].title,
-            description: responseData[key].description,
-            date: responseData[key].date,
-            time: responseData[key].time,
-            location: responseData[key].location,
-            address: responseData[key].address,
-            city: responseData[key].city,
-            img: responseData[key].img,
-            peopleGoing: responseData[key].peopleGoing
+                setEvents(loadedEvents)
+            }
+          }
 
-        })
+        } else if (filter === "vancouver") {
+
+            for (const key in responseData){
+
+              if (responseData[key].city === 'Vancouver') {
+                const loadedEvents = []
+
+                loadedEvents.push({
+                id: key,
+                title: responseData[key].title,
+                description: responseData[key].description,
+                date: responseData[key].date,
+                time: responseData[key].time,
+                location: responseData[key].location,
+                address: responseData[key].address,
+                city: responseData[key].city,
+                img: responseData[key].img,
+                peopleGoing: responseData[key].peopleGoing
+                })
+
+                setEvents(loadedEvents)
+            }
+          }
+
+        } else {
+
+          const loadedEvents = []
+        
+          for (const key in responseData){
+
+              loadedEvents.push({
+              id: key,
+              title: responseData[key].title,
+              description: responseData[key].description,
+              date: responseData[key].date,
+              time: responseData[key].time,
+              location: responseData[key].location,
+              address: responseData[key].address,
+              city: responseData[key].city,
+              img: responseData[key].img,
+              peopleGoing: responseData[key].peopleGoing
+              })
+          }
+  
+          setEvents(loadedEvents)
+
         }
 
-        setEvents(loadedEvents)
+
 
     })
 
   }, [events])
+
+  const filterHandlerAll = () => {
+
+    setFilter('all')
+    console.log(filter)
+
+
+  }
+
+  const filterHandlerVan = () => {
+
+    setFilter('vancouver')
+    console.log(filter)
+
+
+  }
+
+  const filterHandlerTor = () => {
+
+    setFilter('toronto')
+    console.log(filter)
+
+  }
+
+  const filterHandler = (filterReceived) => {
+
+    setFilter(filterReceived)
+    console.log(filter)
+
+  }
 
   return (
         user ?
         <>
           {/* <ProfilePage /> */}
 
-          <EventPage events={events} />
+          <EventPage events={events} filterHandlerAll={filterHandlerAll} filterHandlerVan={filterHandlerVan} filterHandlerTor={filterHandlerTor} />
 
         </>
       :

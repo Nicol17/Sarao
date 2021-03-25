@@ -17,7 +17,8 @@ const EventContextProvider = (props) => {
 
     const addEventHandler = (eventInfo) => {
 
-        console.log(eventInfo)
+        console.log('here')
+
     
         fetch('https://sarao-18c59-default-rtdb.firebaseio.com/events.json', {
           method: 'POST',
@@ -31,6 +32,9 @@ const EventContextProvider = (props) => {
                 { id: responseData.id, ...eventInfo}
               ])
         })
+
+        // redirect to home
+        // window.location.href = "/"
     
     }
     

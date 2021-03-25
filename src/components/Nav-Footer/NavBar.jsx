@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {auth} from "../../firebase";
+
 // import EventForm from '../EventForm'
 
 
@@ -25,7 +27,13 @@ const NavBar = (props) => {
               <Link to="/create-event" style={{textDecoration: 'none'}}>
                 <Button variant='outlined' color="secondary" > Create an event </Button>
               </Link>
+
+              <Link to="/">
+                <Button onClick = {() => {auth.signOut()}} variant='outlined' variant="outlined" color="secondary" > Sign Out </Button>
+              </Link>
+
             </Grid>
+
           </Grid>
         </Toolbar>
       </AppBar>
