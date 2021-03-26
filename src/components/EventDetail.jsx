@@ -172,7 +172,7 @@ const EventDetail=(props) =>{
     <NavBar />
     <Grid container style={{ minHeight: '100vh'}}>
       <Grid item xs={12} sm={12} md={12} className={classes.image} style={{height:'500px', display:'flex', flexDirection:'row', alignItems:'flex-end'}}>
-        <Grid item xs={12} sm={12} md={12}>
+        <Grid item xs={12} sm={12} md={12} style={{width:'100%'}}>
           <h1 style={{marginLeft:'60px', fontSize:'40px', color:'white'}}>{title}</h1>
           {
             peopleGoing ? <h2 style={{marginLeft:'60px', fontSize:'25px', color:'white'}}>{peopleGoing} People are comming</h2> : 
@@ -181,9 +181,9 @@ const EventDetail=(props) =>{
           }
         </Grid>
       </Grid>
-      <Grid container xs={false} sm={12} md={11}  style={{margin:'10px auto'}}>
+      <Grid container xs={false} sm={12} md={11}  style={{margin:'10px auto',}}>
     
-        <Grid container xs={11} sm={11} md={7} className={classes.marginAuto}>
+        <Grid container xs={11} sm={11} md={7} className={classes.marginAuto} style={{margin:'auto',}}>
             <h2 style={{ display:'block',width:'100%',fontSize:'25px'}}>Description</h2>
             <p style={{with:'100%', fontSize:'18px'}}>{description}</p>
             <br></br>
@@ -245,7 +245,7 @@ const EventDetail=(props) =>{
                       <br></br>
                       <br></br>
                             
-                        <Button onClick={commentSubmitHandler} style={{width:'50%', backgroundColor:'#2196f3'}} className={classes.primaryBtn} variant="contained" size="medium" color="primary" >
+                        <Button onClick={commentSubmitHandler} style={{width:'50%', marginBottom:'40px', backgroundColor:'#2196f3'}} className={classes.primaryBtn} variant="contained" size="medium" color="primary" >
                               
                             <Typography component="h1" variant="h5">
                                     Send Comment
@@ -266,24 +266,25 @@ const EventDetail=(props) =>{
             style={{margin:'20px auto',
             backgroundColor:'#2196f3',
             height:'330px', 
-            //width:'80%', 
+            width:'80%', 
             borderRadius:'8px 8px 0px 0px', 
-            boxShadow:'1px 1px 4px 0px rgba(50, 50, 50, 0.75)',}}>
+            boxShadow:'1px 1px 4px 0px rgba(50, 50, 50, 0.75)',
+            }}>
               <h2 className={classes.detailsEvent} style={{color:'white', width:'100%', paddingLeft:'40px', marginTop:'40px', marginBottom:'0px',  textDecoration: 'underline white'}} >Details</h2>
              <div style={{ color:'white', padding:'10px 40px'}} >
               
               <div style={{display:'flex', flexDirection:'row', justifyContent: 'space-between'}}>
                 <p style={{fontSize:'18px'}}>
-                  <span style={{fontWeight:'700'}}>Date:</span>
+                  <span style={{fontWeight:'700'}}>🗓 Date</span>
                   <br></br>{date}
                 </p>
                 <p style={{fontSize:'18px', marginLeft:'90px'}}>
-                  <span style={{fontWeight:'700'}}>Time:</span>
+                  <span style={{fontWeight:'700'}}>🕐 Time</span>
                   <br></br>{time}
                 </p>
               </div> 
               <p style={{fontSize:'18px'}}>
-                <span style={{fontWeight:'700'}}>Location:</span>
+                <span style={{fontWeight:'700'}}>📍 Location</span>
                 <br></br>{location}
                 <br></br>{address}
                 <br></br>{city}
@@ -294,7 +295,7 @@ const EventDetail=(props) =>{
           variant="contained"
           color="default"
           className={classes.checkBtn}
-          style={{width:'33.3%','hover':{color:'white', backgroundColor:'#2196f3'}}}
+          style={{width:'33.33%','hover':{color:'white', backgroundColor:'#2196f3'}}}
           startIcon={<CheckIcon />}
         >
         </Button>
@@ -302,7 +303,7 @@ const EventDetail=(props) =>{
         <Button
           variant="contained"
           color="default"
-          style={{borderRadius:'0px', padding:'20px',width:'33.3%'}}
+          style={{borderRadius:'0px', padding:'20px',width:'33.33%'}}
           className={classes.button}
           startIcon={<ClearIcon />}
         >
@@ -311,7 +312,7 @@ const EventDetail=(props) =>{
         <Button
           variant="contained"
           color="default"
-          style={{borderRadius:'0px 0px 8px 0px', padding:'20px',width:'33.3%'}}
+          style={{borderRadius:'0px 0px 8px 0px', padding:'20px',width:'33.33%'}}
           className={classes.button}
           startIcon={<HelpIcon />}
         >
