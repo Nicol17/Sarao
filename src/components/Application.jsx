@@ -1,67 +1,129 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import { Router } from "@reach/router";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import { EventContext } from "../providers/EventProvider";
-// import ProfilePage from "./ProfilePage";
+// import { EventContext } from "../providers/EventProvider";
 import { UserContext } from "../providers/UserProvider";
 import PasswordReset from "./PasswordReset";
 import { Grid } from '@material-ui/core';
-// import EventForm from "./EventForm";
 import EventPage from "./EventPage";
-import EventDetail from "./EventDetail";
-
-
-
 
 function Application() {
   const user = useContext(UserContext);
-  const eventContext = useContext(EventContext)
+  // const eventContext = useContext(EventContext)
   const [events, setEvents] = useState([])
-
-
+  const [filter, setFilter] = useState("all")
 
   useEffect(() => {
-
-    
 
     fetch('https://sarao-18c59-default-rtdb.firebaseio.com/events.json')
     .then(response => response.json())
     .then(responseData => {
-        const loadedEvents = []
+
+        if (filter === "toronto") {
+
+            const loadedEvents = []
         
-        for (const key in responseData){
+            for (const key in responseData){    
 
+              if (responseData[key].city === 'Toronto') {
 
+                loadedEvents.push({
+                id: key,
+                title: responseData[key].title,
+                description: responseData[key].description,
+                date: responseData[key].date,
+                time: responseData[key].time,
+                location: responseData[key].location,
+                address: responseData[key].address,
+                city: responseData[key].city,
+                img: responseData[key].img,
+                peopleGoing: responseData[key].peopleGoing
+                })
+            }
+          }
 
-            loadedEvents.push({
-            id: key,
-            title: responseData[key].title,
-            description: responseData[key].description,
-            date: responseData[key].date,
-            time: responseData[key].time,
-            location: responseData[key].location,
-            address: responseData[key].address,
-            city: responseData[key].city,
-            img: responseData[key].img,
-            peopleGoing: responseData[key].peopleGoing
+          setEvents(loadedEvents)
 
-        })
+        } else if (filter === "vancouver") {
+
+            const loadedEvents = []
+
+            for (const key in responseData){
+
+              if (responseData[key].city === 'Vancouver') {
+                
+                loadedEvents.push({
+                id: key,
+                title: responseData[key].title,
+                description: responseData[key].description,
+                date: responseData[key].date,
+                time: responseData[key].time,
+                location: responseData[key].location,
+                address: responseData[key].address,
+                city: responseData[key].city,
+                img: responseData[key].img,
+                peopleGoing: responseData[key].peopleGoing
+                })
+            }
+          }
+
+          setEvents(loadedEvents)
+
+        } else {
+
+          const loadedEvents = []
+        
+          for (const key in responseData){
+
+              loadedEvents.push({
+              id: key,
+              title: responseData[key].title,
+              description: responseData[key].description,
+              date: responseData[key].date,
+              time: responseData[key].time,
+              location: responseData[key].location,
+              address: responseData[key].address,
+              city: responseData[key].city,
+              img: responseData[key].img,
+              peopleGoing: responseData[key].peopleGoing
+              })
+          }
+  
+          setEvents(loadedEvents)
+
         }
 
-        setEvents(loadedEvents)
+
 
     })
 
-  }, [events])
+  }, [filter])
+
+  const filterHandlerAll = () => {
+
+    setFilter('all')
+
+  }
+
+  const filterHandlerVan = () => {
+
+    setFilter('vancouver')
+
+  }
+
+  const filterHandlerTor = () => {
+
+    setFilter('toronto')
+
+  }
 
   return (
         user ?
         <>
           {/* <ProfilePage /> */}
 
-          <EventPage events={events} />
+          <EventPage events={events} filterHandlerAll={filterHandlerAll} filterHandlerVan={filterHandlerVan} filterHandlerTor={filterHandlerTor} />
 
         </>
       :

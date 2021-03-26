@@ -72,6 +72,11 @@ const EventForm = (props) => {
         const uploadTask = storage.ref(`images/${img.name}`).put(img);
         await uploadTask.on(
         "state_changed",
+        snapshot => {
+            const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+        },
         error => {
             console.log(error);
         },
@@ -82,17 +87,18 @@ const EventForm = (props) => {
             .getDownloadURL()
             .then(url => {
                 if(url) {
+
                     eventContext.addEventHandler({
                         title: title,
                         description: description,
                         date: date,
-                        time: time,
+                        time, time,
                         location: location,
                         address: address,
                         city: city,
                         img: url
                     })
-        
+                    
                 }
             });
         }
@@ -123,7 +129,7 @@ const EventForm = (props) => {
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="Name your event"
-                    autoFocus
+                    // autoFocus
                     onChange={(e) => {setTitle(e.target.value)}}
             />
             
@@ -133,7 +139,7 @@ const EventForm = (props) => {
                 <br></br>
                 <TextareaAutosize
                 id="description" 
-                autoFocus
+                // autoFocus
                 rowsMin={3}
                 label="Description"
                 value={description}
@@ -198,7 +204,7 @@ const EventForm = (props) => {
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="City"
-                    autoFocus
+                    // autoFocus
                     onChange={(e) => {setLocation(e.target.value)}}
             />
             
@@ -218,7 +224,7 @@ const EventForm = (props) => {
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="Address"
-                    autoFocus
+                    // autoFocus
                     onChange={(e) => {setAddress(e.target.value)}}
                 />
 
@@ -246,7 +252,7 @@ const EventForm = (props) => {
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="City"
-                    autoFocus
+                    // autoFocus
                     onChange={(e) => {setCity(e.target.value)}}
                 />     */}
                 </div> 
@@ -266,7 +272,7 @@ const EventForm = (props) => {
                     //autoComplete="email"
                     className="my-1 p-1 w-full"
                     placeholder="Image"
-                    autoFocus
+                    // autoFocus
                     InputLabelProps={{
                         shrink: true,
                     }}

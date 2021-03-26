@@ -23,32 +23,32 @@ const EventPage = props => {
           <Grid container justify="center" >
             <img src="https://firebasestorage.googleapis.com/v0/b/sarao-18c59.appspot.com/o/images%2Findex.png?alt=media&token=630a5ea1-0861-4038-8058-67455da65c8d" alt="SaraoLogo" />
           </Grid>
-          <Typography variant='h5' align='center' color='textSecondary' paragraph>
-            Join us on events Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, aliquam?
+
+          <Typography variant='h5' align='center' color='textSecondary' parragraph>
+          Securely connect, collaborate and celebrate in Canada. With Sarao, everyone can safely create and join events, meetings, celebrations, outdoor and indoor activities.
+
              </Typography>
 
         </Container>
       </div>
       <br/>
 
-          <Grid spacing={1} className='buttonEventPage' >
-              {/* <Grid item style={{width:'100%', alignItems:"center", justifyItems:'center'}} xs={12} sm={6} md={4} > */}
+          <Grid className='buttonEventPage' >
               <Grid className='upcoming'>
-                {/* <Typography variant='h4' align='left' style={{}}> */}
-                <Typography variant='h4'>
+                <Typography variant='h4' align='center'>
                   Upcoming events
                 </Typography>
               </Grid>
-            {/* <Grid container spacing={3} Grid className={classes.cities}> */}
             <Grid className='buttonCities' spacing={4}>
-              <Grid>
-                <Button variant='contained' color='secondary'> All </Button>
+              <Grid style={{margin:'0 8px'}}>
+                <Button onClick={props.filterHandlerAll} variant='contained' color='secondary'> All </Button>
               </Grid>
-              <Grid>
-                <Button variant='contained' color='secondary'> Vancouver </Button>
+              <Grid style={{margin:'0 8px'}}>
+                <Button onClick={props.filterHandlerVan} variant='contained' color='secondary'> Vancouver </Button>
               </Grid>
-              <Grid>
-                <Button variant='contained' color='secondary'> Toronto </Button>
+              <Grid style={{margin:'0 8px'}}>
+                <Button onClick={props.filterHandlerTor} variant='contained' color='secondary'> Toronto </Button>
+
               </Grid>
             </Grid>
           </Grid>
