@@ -15,8 +15,6 @@ import { EventContext } from "../providers/EventProvider";
 import { Select, MenuItem } from '@material-ui/core';
 import  '../styles/onlyCss.css';
 
-
-
 const EventForm = (props) => {
 
     const [title, setTitle] = useState("")

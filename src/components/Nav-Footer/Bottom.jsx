@@ -4,8 +4,6 @@ import React from 'react'
 import { Typography } from '@material-ui/core'
 import useStyles from '../../styles/styles'
 
-
-
 const Bottom = (props) => {
     const classes = useStyles();
     return (
@@ -15,7 +13,7 @@ const Bottom = (props) => {
             SARAO
             </Typography>
             <Typography variant='subtitle1' align='center' color='textPrimary'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, voluptatem.
+            © 2021. Sarao was created by ingenious people helping to revert the effects of Covid. Privacy Policy
             </Typography>
         </footer>
         </>
