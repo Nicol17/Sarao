@@ -5,13 +5,13 @@ import { UserContext } from '../providers/UserProvider'
 // Stilyng
 import { Typography, Button, Card, CardActions, CardContent, CardMedia, Grid } from '@material-ui/core'
 // import AddLocationTwoToneIcon from '@material-ui/icons/AddLocationTwoTone';
-import ShareIcon from '@material-ui/icons/Share';
-import StarIcon from '@material-ui/icons/Star';
+// import ShareIcon from '@material-ui/icons/Share';
+// import StarIcon from '@material-ui/icons/Star';
 import PinDropIcon from '@material-ui/icons/PinDrop';
 import TimerIcon from '@material-ui/icons/Timer';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import useStyles from '../styles/styles'
-import { Link, BrowserRouter as Router, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 
@@ -47,7 +47,7 @@ const EventCard = (props) => {
                  </Typography>
                  <Typography>
 
-                   <Link to={{
+                   <Link style={{textDecoration: "none", color: "#696969"}} to={{
                      pathname:`/event/${props.event.id}`,
                    }} >
                     {props.event.description}

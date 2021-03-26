@@ -5,7 +5,7 @@ import { Typography, Button, Grid, Container } from '@material-ui/core'
 import useStyles from '../styles/styles'
 import NavBar from './Nav-Footer/NavBar'
 import Bottom from './Nav-Footer/Bottom'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import  '../styles/onlyCss.css'
 
 

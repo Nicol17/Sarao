@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useContext } from 'react';
-import useStyles from '../styles/styles';
+// import useStyles from '../styles/styles';
 import CheckIcon from '@material-ui/icons/Check';
 import HelpIcon from '@material-ui/icons/Help';
 import ClearIcon from '@material-ui/icons/Clear';
@@ -8,8 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {Button} from "@material-ui/core";
-import { createMuiTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+// import { createMuiTheme } from '@material-ui/core/styles';
+// import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
@@ -18,12 +18,12 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
+// import ListSubheader from '@material-ui/core/ListSubheader';
 import Avatar from '@material-ui/core/Avatar';
-import MenuIcon from '@material-ui/icons/Menu';
-import AddIcon from '@material-ui/icons/Add';
-import SearchIcon from '@material-ui/icons/Search';
-import MoreIcon from '@material-ui/icons/MoreVert';
+// import MenuIcon from '@material-ui/icons/Menu';
+// import AddIcon from '@material-ui/icons/Add';
+// import SearchIcon from '@material-ui/icons/Search';
+// import MoreIcon from '@material-ui/icons/MoreVert';
 import NavBar from './Nav-Footer/NavBar'
 import { UserContext } from "../providers/UserProvider";
 import { CommentContext } from "../providers/CommentProvider";
@@ -189,7 +189,7 @@ const EventDetail=(props) =>{
             <br></br>
             <br></br>
             <br></br>
-            <iframe  style={{width:'93%', marginTop:'20px', height:'400px', border:'none'}} src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10412.63775668291!2d-123.103834!3d49.273376!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x218237371f987037!2sMundo%20de%20la%20ciencia!5e0!3m2!1ses!2sca!4v1616609693534!5m2!1ses!2sca" ></iframe>
+            <iframe title={props.match.params.id} style={{width:'93%', marginTop:'20px', height:'400px', border:'none'}} src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10412.63775668291!2d-123.103834!3d49.273376!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x218237371f987037!2sMundo%20de%20la%20ciencia!5e0!3m2!1ses!2sca!4v1616609693534!5m2!1ses!2sca" ></iframe>
             <Grid container xs={false} sm={12} md={12} style={{marginTop:'40px'}} className={classes.marginAuto}>
               <CssBaseline />
               <Grid container xs={false} sm={12} md={12} className={classes.marginAuto}>

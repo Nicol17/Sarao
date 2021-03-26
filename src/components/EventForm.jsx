@@ -12,7 +12,7 @@ import Bottom from './Nav-Footer/Bottom'
 import useStyles from '../styles/styles'
 import { storage } from "../firebase"
 import { EventContext } from "../providers/EventProvider";
-import { Select, MenuItem } from '@material-ui/core';
+// import { Select, MenuItem } from '@material-ui/core';
 import  '../styles/onlyCss.css';
 
 const EventForm = (props) => {
@@ -40,9 +40,9 @@ const EventForm = (props) => {
         },
     });
 
-    const handleCitySelection = (e) => {
-        setCity(e.target.value);
-    }
+    // const handleCitySelection = (e) => {
+    //     setCity(e.target.value);
+    // }
 
     const handleChange = (e) => {
         if (e.target.files[0]) {
@@ -62,6 +62,7 @@ const EventForm = (props) => {
             const progress = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             );
+            console.log(progress)
         },
         error => {
             console.log(error);
@@ -78,7 +79,7 @@ const EventForm = (props) => {
                         title: title,
                         description: description,
                         date: date,
-                        time, time,
+                        time: time,
                         location: location,
                         address: address,
                         city: city,

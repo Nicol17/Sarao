@@ -29,7 +29,7 @@ const NavBar = (props) => {
               </Link>
 
               <Link to="/" className='navButton'>
-                <Button onClick = {() => {auth.signOut()}} variant='outlined' variant="outlined" color="secondary" > Sign Out </Button>
+                <Button onClick = {() => {auth.signOut()}} variant='outlined' color="secondary" > Sign Out </Button>
               </Link>
 
             </Grid>
