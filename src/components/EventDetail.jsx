@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import useStyles from '../styles/styles';
-
 import CheckIcon from '@material-ui/icons/Check';
 import HelpIcon from '@material-ui/icons/Help';
 import ClearIcon from '@material-ui/icons/Clear';
@@ -157,9 +156,9 @@ const EventDetail=(props) =>{
     <Grid container style={{ minHeight: '100vh'}}>
       <Grid item xs={12} sm={12} md={12} className={classes.image} style={{height:'500px', display:'flex', flexDirection:'row', alignItems:'flex-end'}}>
         <Grid item xs={12} sm={12} md={12}>
-          <h1 style={{marginLeft:'60px', fontSize:'40px'}}>{title}</h1>
+          <h1 style={{marginLeft:'60px', fontSize:'40px', color:'white'}}>{title}</h1>
           {
-            peopleGoing ? <h2 style={{marginLeft:'60px', fontSize:'25px'}}>{peopleGoing} People are comming</h2> : 
+            peopleGoing ? <h2 style={{marginLeft:'60px', fontSize:'25px', color:'white'}}>{peopleGoing} People are comming</h2> : 
             <h2 style={{marginLeft:'60px', fontSize:'25px'}}>No one is comming yet</h2>
             
           }
@@ -168,13 +167,12 @@ const EventDetail=(props) =>{
       <Grid container xs={false} sm={12} md={11}  style={{margin:'10px auto'}}>
     
         <Grid container xs={11} sm={11} md={7} className={classes.marginAuto}>
-            <h2 style={{ fontSize:'25px'}}>Description</h2>
-            <br></br>
-            <p style={{marginLeft:'60px', fontSize:'18px'}}>{description}</p>
-            <br></br>
+            <h2 style={{ display:'block',width:'100%',fontSize:'25px'}}>Description</h2>
+            <p style={{with:'100%', fontSize:'18px'}}>{description}</p>
             <br></br>
             <br></br>
-            <iframe  style={{width:'93%', height:'400px', border:'none'}} src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10412.63775668291!2d-123.103834!3d49.273376!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x218237371f987037!2sMundo%20de%20la%20ciencia!5e0!3m2!1ses!2sca!4v1616609693534!5m2!1ses!2sca" ></iframe>
+            <br></br>
+            <iframe  style={{width:'93%', marginTop:'20px', height:'400px', border:'none'}} src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10412.63775668291!2d-123.103834!3d49.273376!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x218237371f987037!2sMundo%20de%20la%20ciencia!5e0!3m2!1ses!2sca!4v1616609693534!5m2!1ses!2sca" ></iframe>
             <Grid container xs={false} sm={12} md={12} style={{marginTop:'40px'}} className={classes.marginAuto}>
               <CssBaseline />
               <Grid container xs={false} sm={12} md={12} className={classes.marginAuto}>
@@ -230,7 +228,7 @@ const EventDetail=(props) =>{
                       <br></br>
                       <br></br>
                             
-                        <Button onClick={commentSubmitHandler} style={{width:'50%'}} className={classes.primaryBtn} variant="contained" size="medium" color="primary" >
+                        <Button onClick={commentSubmitHandler} style={{width:'50%', backgroundColor:'#2196f3'}} className={classes.primaryBtn} variant="contained" size="medium" color="primary" >
                               
                             <Typography component="h1" variant="h5">
                                     Send Comment
@@ -247,10 +245,15 @@ const EventDetail=(props) =>{
           </Grid>
           <Grid container xs={12} sm={12} md={5}  className={classes.marginAuto}>
 
-            <Grid container xs={12} sm={8} md={8} className={classes.detailsBox} bgcolor="info.main">
-              <h2 className={classes.detailsEvent} >Details</h2>
-                  <hr style={{width:'77%', border:'0.5px solid white'}}></hr>
-            <div style={{display:'flex', flexDirection:'column', color:'white', padding:'10px 40px'}} >
+            <Grid container xs={12} sm={8} md={8}  className={classes.detailsBox} 
+            style={{margin:'20px auto',
+            backgroundColor:'#2196f3',
+            height:'330px', 
+            //width:'80%', 
+            borderRadius:'8px 8px 0px 0px', 
+            boxShadow:'1px 1px 4px 0px rgba(50, 50, 50, 0.75)',}}>
+              <h2 className={classes.detailsEvent} style={{color:'white', width:'100%', paddingLeft:'40px', marginTop:'40px', marginBottom:'0px',  textDecoration: 'underline white'}} >Details</h2>
+             <div style={{ color:'white', padding:'10px 40px'}} >
               
               <div style={{display:'flex', flexDirection:'row', justifyContent: 'space-between'}}>
                 <p style={{fontSize:'18px'}}>
@@ -274,7 +277,7 @@ const EventDetail=(props) =>{
           variant="contained"
           color="default"
           className={classes.checkBtn}
-          style={{'hover':{color:'white', backgroundColor:'#2196f3'}}}
+          style={{width:'33.3%','hover':{color:'white', backgroundColor:'#2196f3'}}}
           startIcon={<CheckIcon />}
         >
         </Button>
