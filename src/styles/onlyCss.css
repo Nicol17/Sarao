@@ -1,3 +1,8 @@
+.navButton{
+    text-decoration: none;
+    margin: 0 8px;
+}
+
 .buttonEventPage{
     width: 80%;
     margin-top: 50px;

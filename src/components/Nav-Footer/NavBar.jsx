@@ -24,11 +24,11 @@ const NavBar = (props) => {
             <img className={classes.logoNavBar} src="https://firebasestorage.googleapis.com/v0/b/sarao-18c59.appspot.com/o/images%2Findex.png?alt=media&token=630a5ea1-0861-4038-8058-67455da65c8d" alt="Sarao Logo" />
           </Link>
             <Grid item>
-              <Link to="/create-event" style={{textDecoration: 'none'}}>
+              <Link to="/create-event"  className='navButton'>
                 <Button variant='outlined' color="secondary" > Create an event </Button>
               </Link>
 
-              <Link to="/">
+              <Link to="/" className='navButton'>
                 <Button onClick = {() => {auth.signOut()}} variant='outlined' variant="outlined" color="secondary" > Sign Out </Button>
               </Link>
 
