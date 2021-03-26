@@ -14,7 +14,6 @@ import { storage } from "../firebase"
 import { EventContext } from "../providers/EventProvider";
 import { Select, MenuItem } from '@material-ui/core';
 import  '../styles/onlyCss.css';
-import { FileInput, SVGIcon } from 'react-md';
 
 
 
@@ -229,7 +228,7 @@ const EventForm = (props) => {
                 <br />
                 <div>
                     <InputLabel style={{marginTop:'430px' }}>Image</InputLabel>
-                    <FileInput id="image-input-3" accept="image/*" name="images" primary />
+                    
                     <input
                         style={{marginTop:'40px', width:'100%' }}
                         type="file"
