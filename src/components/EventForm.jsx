@@ -226,7 +226,6 @@ const EventForm = (props) => {
                 <Select
                 value={city}
                 onChange={handleCitySelection}>
-                    
                     <MenuItem value="Vancouver">Vancouver</MenuItem>
                     <MenuItem value="Toronto">Toronto</MenuItem>
                     
