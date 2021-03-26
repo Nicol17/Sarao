@@ -27,6 +27,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import NavBar from './Nav-Footer/NavBar'
 import { UserContext } from "../providers/UserProvider";
 import { CommentContext } from "../providers/CommentProvider";
+import Bottom from './Nav-Footer/Bottom';
 
 
 
@@ -323,6 +324,7 @@ const EventDetail=(props) =>{
      
     </Grid>
     </Grid>
+    <Bottom />
     </>
 
   );
