@@ -1,7 +1,4 @@
 import React, { createContext, useState } from 'react'
-import axios from 'axios'
-
-
 
 export const CommentContext = createContext({
 
@@ -16,7 +13,7 @@ const CommentContextProvider = (props) => {
 
     const addCommentHandler = (commentInfo) => {
 
-        console.log(commentInfo)
+        console.log(comment)
     
         fetch(`https://sarao-18c59-default-rtdb.firebaseio.com/events/${commentInfo.eventId}/comments.json`, {
           method: 'POST',
