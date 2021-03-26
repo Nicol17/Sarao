@@ -49,6 +49,20 @@ const EventDetail=(props) =>{
     }
   }
 
+  // const settingMapUrl = () => {
+  //   if (city && address) {
+
+  //     const query = address.split().join('+')
+
+  //     if (city === "Vancouver") {
+  //       setMapUrl(`https://www.google.com/maps/embed/v1/place?&q=${query},Vancouver+BC`)
+  //     }
+  //     setMapUrl(`https://www.google.com/maps/embed/v1/place?&q=${query},Toronto+ON`)
+  //   }
+
+  //   console.log(mapUrl)
+  // }
+
 
 
   const [title, setTitle] = useState("")
@@ -60,12 +74,14 @@ const EventDetail=(props) =>{
   const [city, setCity] = useState("")
   const [img, setImg] = useState("");
   const [peopleGoing, setPeopleGoing] = useState("");
-
+  // const [mapUrl, setMapUrl] = useState("");
 
   useEffect(() => {
 
     //fecthing username
     settingUsername()
+
+    // settingMapUrl()
 
     // fecthing event info
     fetch(`https://sarao-18c59-default-rtdb.firebaseio.com/events/${props.match.params.id}.json`)
